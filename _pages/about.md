@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Contact via <a href='mailto:gpraveen@asu.edu'>Email</a>.
+subtitle: <a href='https://www.instagram.com/untamed_snap/'>Photography</a>. <a href='https://medium.com/@GokulKrishna01'>Recipes</a>.
 
 profile:
   align: right
