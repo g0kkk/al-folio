@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "iCTF 2019 Echodoor"
+subtitle: 'Walkthrough for echodoor Challenge'
+date:   2019-03-15 00:00:00
+tags:
+- iCTF, 2019, Golang
+---
+
+Last week I had participated for iCTF along with [pwndevils](https://pwndevils.com). The game was pretty neat wherein you unlock A&D challenges for interaction by solving the Jeopardy chals of which one was _`echodoor`_.
+
+We were given a file, [_`server.go`_](https://github.com/gokulkrishna01/gokulkrishna01.github.io/blob/master/assets/source_code/CTF/ictf/echodoor/server.go), apparently what is running behind. To be honest, this was my first time dealing with a Golang as a server. I decided to tackle it as that was the only web challenge. Picking out the necessary stuffs from the given source code,
+
+{% highlight go %}
+func dump_config(w http.ResponseWriter, r \*http.Request) {
+        if r.Referer() != "http://" + r.Host + "/menu" {
+                http.Redirect(w, r, "/menu", http.StatusTemporaryRedirect)
+                return
+        }
+        data, err := ioutil.ReadFile("./config.tar.gz")
+        if err != nil {
+                fmt.Fprintf(w, "error: %v", err)
+                return
+        }
+        fmt.Fprintf(w, "%s", string(data))
+}
+{% endhighlight %}
+
+The above piece of stuff was pretty much important. Setting the referrer with the right path would give out _config.tar.gz_ file. Deflating and untaring it gave couple of files - `creds.txt` & `flag.cfg`.
+
+Inside `creds.txt`, there was, supposedly, username and password - `SuperFast` & `5up3rFuR10u$` - which we can use to login to the portal. Also, `flag.cfg` contained
+{% highlight html %}
+directory: /
+file: flaA4aAaAaAAAAaag9G.txt
+{% endhighlight %}
+
+At this point, it was evident what was supposed to be read. After logging in, we had a field wherein we could enter *ip*. From the above-mentioned source code, it was known that only 15 character was the limit (apparently I do not have any screenshots of the chal and it is taken down while I'm writing this). Entering characters through the website was not working as there was a client side validation being done and only alphabets along with `.` were not filtered.
+
+Well, interacting with the server directly made more sense. Apparently, there were two constraints of which one was *a character limit of 15* and the only binaries that were inside the server was *ping* and *sh*.
+
+After brain storming with my teammates, finally we got the flag by using the `-v` option in `sh`which would write input to standard error after reading it.
