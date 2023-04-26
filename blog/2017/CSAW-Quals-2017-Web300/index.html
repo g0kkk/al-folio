@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CSAW Quals 2018 | Gokul Krishna</title>
+    <meta name="author" content="Gokulkrishna P. Menon">
+    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://g0kkk.github.io/blog/2017/CSAW-Quals-2017-Web300/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/">Gokul Krishna</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">projects</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/teaching/">teaching</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/publications/">publications</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/projects/">projects</a>
+                </div>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CSAW Quals 2018</h1>
+    <p class="post-meta">September 18, 2017</p>
+    <p class="post-tags">
+      <a href="/blog/2017"> <i class="fas fa-calendar fa-sm"></i> 2017 </a>
+        ·  
+        <a href="/blog/tag/web-java-serialization">
+          <i class="fas fa-hashtag fa-sm"></i> Web, Java Serialization</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>So after a break from last year on writing <a href="https://gokulkrishna01.wordpress.com/" rel="external nofollow noopener" target="_blank">blogs</a>, I thought of writing blog for this particular challenge for the reason that the time it took to get solved and also the method involved to solve this particular challenge.</p>
+
+<p>The challenge description was <code class="language-plaintext highlighter-rouge">Not My Cup of Coffee, I heard you liked food based problems, so here's a liquid one.</code>
+<a href="http://web.chal.csaw.io:8616" rel="external nofollow noopener" target="_blank"> Challenge Link</a></p>
+
+<p>Clicking on the link directs us to home where they have some beans already present in a table in which scrolling down shows <code class="language-plaintext highlighter-rouge">Flag</code> which we are interested in.</p>
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/Welcome_screen.png" alt="">
+</figure>
+
+<p>Below that there was a link to the <code class="language-plaintext highlighter-rouge">admin</code> panel which led to a password protected page. When I tried entering random values, it showed incorrect. For a moment, I thought it would be injection but did not seem to work out.</p>
+
+<p>Later, going back to the main page had an option of <code class="language-plaintext highlighter-rouge">Start breeding</code> wherein there is a coloumn where there were two fields to enter our input and another two boxes containing parent1 and parent2. Randomly tried giving in some input and gave the default parent which was <code class="language-plaintext highlighter-rouge">Covfefe</code> with the name as <code class="language-plaintext highlighter-rouge">bi0s</code>.
+Redirecting to the home page and scrolling down showed us that our value got input with a description as well of <code class="language-plaintext highlighter-rouge">Covfefe</code>. Since there was <code class="language-plaintext highlighter-rouge">Flag</code> below that, my essential aim was to see which parent’s description was inherited and bingo, it was parent1. Also we were able to see that the parent list in the <code class="language-plaintext highlighter-rouge">Start Breeding</code> page had new options being added with the Name that we gave before.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/flagbreed.png" alt="">
+</figure>
+
+<p>Later on going through the source code revealed that there was something next to the option, which was more of like a alphanumeric string seperated by a hash. Was able to get that the first was a base64 string and the second, some hex string. Decoding the base64 string of one of the options, here I took <code class="language-plaintext highlighter-rouge">Covfefe</code>, revealed a string.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/base64_option.png" alt="">
+</figure>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="s">"rO0ABXNyABJjb2ZmZWUuQ292ZmVmZUJlYW4AAAAAAAAAAQIAAHhyAAtjb2ZmZWUuQmVhbgAAAAAAAAABAgAETAAHaW5oZXJpdHQADUxjb
+   ...: 2ZmZWUvQmVhbjtMAARuYW1ldAASTGphdmEvbGFuZy9TdHJpbmc7TAAHcGFyZW50MXEAfgACTAAHcGFyZW50MnEAfgACeHBwdAAHQ292ZmVmZXBw"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s">'</span><span class="se">\xac\xed\x00\x05</span><span class="s">sr</span><span class="se">\x00\x12</span><span class="s">coffee.CovfefeBean</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x01\x02\x00\x00</span><span class="s">xr</span><span class="se">\x00\x0b</span><span class="s">coffee.Bean</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x01\x02\x00\x04</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">inheritt</span><span class="se">\x00\r</span><span class="s">Lcoffee/Bean;L</span><span class="se">\x00\x04</span><span class="s">namet</span><span class="se">\x00\x12</span><span class="s">Ljava/lang/String;L</span><span class="se">\x00\x07</span><span class="s">parent1q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">parent2q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">xppt</span><span class="se">\x00\x07</span><span class="s">Covfefepp'</span></code></pre></figure>
+
+<p>So after a bit of traversal through the web site, there was a request to <code class="language-plaintext highlighter-rouge">admin.jsp</code> and going to that (http://web.chal.csaw.io:8616/admin.jsp) dumped the password with a <code class="language-plaintext highlighter-rouge">$</code> sign in between.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">String</span> <span class="n">result</span><span class="o">;</span>
+<span class="mi">26</span><span class="o">:</span>           <span class="c1">// NOTE: Change $ to s when page is ready</span>
+<span class="mi">27</span><span class="o">:</span>           <span class="n">auth</span><span class="o">.</span><span class="na">loadPassword</span><span class="o">(</span><span class="s">"Pas$ion"</span><span class="o">);</span>
+<span class="mi">28</span><span class="o">:</span>           <span class="k">if</span> <span class="o">(!</span><span class="n">guess</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="s">"[A-Za-z0-9]+"</span><span class="o">))</span> <span class="o">{</span>
+<span class="mi">29</span><span class="o">:</span>             <span class="n">result</span> <span class="o">=</span> <span class="s">"Only alphanumeric characters allowed"</span><span class="o">;</span>
+<span class="mi">30</span><span class="o">:</span>           <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+<span class="mi">31</span><span class="o">:</span>             <span class="n">result</span> <span class="o">=</span> <span class="n">auth</span><span class="o">.</span><span class="na">lookup</span><span class="o">(</span><span class="n">guess</span><span class="o">.</span><span class="na">hashCode</span><span class="o">());</span></code></pre></figure>
+
+<p>but since JavaCodes are deterministic, we can create one that matches this and that was <code class="language-plaintext highlighter-rouge">ParCipO</code>.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/Password_screen.png" alt="">
+</figure>
+
+<p>Logging in to the admin page with this string</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/Key.png" alt="">
+</figure>
+
+<p>gave me a key which was <code class="language-plaintext highlighter-rouge">c@ram31m4cchi@o</code>. Also, we had a hash appended towards the end of the serialized beans. After a bit of digging, I found that the hash appended was just a salt and not anything else. Now basically I had to craft a payload which contains the keyword <code class="language-plaintext highlighter-rouge">Flag</code> in it, appended with the salt.</p>
+
+<p>The next thing was crafting the <code class="language-plaintext highlighter-rouge">parent1</code> as <code class="language-plaintext highlighter-rouge">payload + "-" + sha256sumhex(payload + salt)</code> where <code class="language-plaintext highlighter-rouge">salt</code> was <code class="language-plaintext highlighter-rouge">c@ram31m4cchi@o</code>. Essentially, crafting the payload was a bit task so in the beginning, my team-mate <a href="https://twitter.com/heerajnair" rel="external nofollow noopener" target="_blank"> Heeraj</a> and I had thought of replacing <code class="language-plaintext highlighter-rouge">Covfefe</code> with <code class="language-plaintext highlighter-rouge">Flag</code> and had sent request by modifying <code class="language-plaintext highlighter-rouge">parent1</code> but yielded no result. Then what we had thought was the string length of <code class="language-plaintext highlighter-rouge">Flag</code> with that of <code class="language-plaintext highlighter-rouge">Covfefe</code>. Yes, it is different and hence would alter the structure. So the very next moment, we took the base64 of <code class="language-plaintext highlighter-rouge">Raid</code>, updated with <code class="language-plaintext highlighter-rouge">Flag</code> and appended the hash that was to be appended which was <code class="language-plaintext highlighter-rouge">6715801eb21604db3f35709ff86ee6ac86e75bab042d2e4fced219c7a130763c</code>.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="s">"rO0ABXNyAA9jb2ZmZWUuUmFpZEJlYW4AAAAAAAAAAQIAAHhyAAtjb2ZmZWUuQmVhbgAAAAAAAAABAgAETAAHaW5oZXJpdHQADUxjb2ZmZ
+   ...: WUvQmVhbjtMAARuYW1ldAASTGphdmEvbGFuZy9TdHJpbmc7TAAHcGFyZW50MXEAfgACTAAHcGFyZW50MnEAfgACeHBwdAAEUmFpZHBw"</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s">'</span><span class="se">\xac\xed\x00\x05</span><span class="s">sr</span><span class="se">\x00\x0f</span><span class="s">coffee.RaidBean</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x01\x02\x00\x00</span><span class="s">xr</span><span class="se">\x00\x0b</span><span class="s">coffee.Bean</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x01\x02\x00\x04</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">inheritt</span><span class="se">\x00\r</span><span class="s">Lcoffee/Bean;L</span><span class="se">\x00\x04</span><span class="s">namet</span><span class="se">\x00\x12</span><span class="s">Ljava/lang/String;L</span><span class="se">\x00\x07</span><span class="s">parent1q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">parent2q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">xppt</span><span class="se">\x00\x04</span><span class="s">Raidpp'</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s">"</span><span class="se">\xac\xed\x00\x05</span><span class="s">sr</span><span class="se">\x00\x0f</span><span class="s">coffee.FlagBean</span><span class="se">\x00\x00\x00\x00\x00\x00\x00\x01\x02\x00\x00</span><span class="s">xr</span><span class="se">\x00\x0b</span><span class="s">coffee.Bean</span><span class="se">\x00\x00</span><span class="s">\x
+   ...: 00</span><span class="se">\x00\x00\x00\x00\x01\x02\x00\x04</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">inheritt</span><span class="se">\x00\r</span><span class="s">Lcoffee/Bean;L</span><span class="se">\x00\x04</span><span class="s">namet</span><span class="se">\x00\x12</span><span class="s">Ljava/lang/String;L</span><span class="se">\x00\x07</span><span class="s">pare
+   ...: nt1q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">L</span><span class="se">\x00\x07</span><span class="s">parent2q</span><span class="se">\x00</span><span class="s">~</span><span class="se">\x00\x02</span><span class="s">xppt</span><span class="se">\x00\x04</span><span class="s">Flagpp'"</span></code></pre></figure>
+
+<p>So the final string that had to be sent to the server in <code class="language-plaintext highlighter-rouge">parent1</code> was</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="sb">`rO0ABXNyAA9jb2ZmZWUuRmxhZ0JlYW4AAAAAAAAAAQIAAHhyAAtjb2ZmZWUuQmVhbgAAAAAAAAABAgAETAAHaW5oZXJpdHQADUxjb2ZmZWUvQmVhbjtMAARuYW1ldAASTGphdmEvbGFuZy9TdHJpbmc7TAAHcGFyZW50MXEAfgACTAAHcGFyZW50MnEAfgACeHBwdAAERmxhZ3Bw-6715801eb21604db3f35709ff86ee6ac86e75bab042d2e4fced219c7a130763c`</span><span class="p">.</span></code></pre></figure>
+
+<p>Bingo, modifying the request of <code class="language-plaintext highlighter-rouge">parent1</code> with the parameter of <code class="language-plaintext highlighter-rouge">Name</code> filled gives us the flag</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/burpfinal.png" alt="">
+</figure>
+
+<p><code class="language-plaintext highlighter-rouge">flag{yd1dw3wr1t3th15j@v....</code></p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33" rel="external nofollow noopener" target="_blank">Twitter</a> for more updates.</p>
+
+  </article>
+
+
+  
+    
+    <br>
+    <hr>
+    <br>
+    <ul class="list-disc pl-8"></ul>
+
+    <!-- Adds related posts to the end of an article -->
+    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
+    <p class="mb-2">Here are some more articles you might like to read next:</p>
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/CONFidence-CTF-admin-panel/">CONFidence CTF 2019 'The Admin Panel' Writeup</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/iCTF-2019-Echodoor/">iCTF 2019 Echodoor</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/SECT-2018-EzDOS/">SECT 2018 EzDOS Reversing Challenge</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/">ASIS Quals 2018 Good WAF</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/MacOS-Malware/">Search Page Injection Malware on MacOS </a>
+  </li>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Gokulkrishna P. Menon. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>

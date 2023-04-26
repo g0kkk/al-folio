@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://g0kkk.github.io/sitemap.xml

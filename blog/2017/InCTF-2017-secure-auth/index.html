@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InCTF Web500 Secure Auth | Gokul Krishna</title>
+    <meta name="author" content="Gokulkrishna P. Menon">
+    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://g0kkk.github.io/blog/2017/InCTF-2017-secure-auth/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/">Gokul Krishna</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">projects</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/teaching/">teaching</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/publications/">publications</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/projects/">projects</a>
+                </div>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">InCTF Web500 Secure Auth</h1>
+    <p class="post-meta">December 18, 2017</p>
+    <p class="post-tags">
+      <a href="/blog/2017"> <i class="fas fa-calendar fa-sm"></i> 2017 </a>
+        ·  
+        <a href="/blog/tag/web-ctf-unicorn-js">
+          <i class="fas fa-hashtag fa-sm"></i> Web, CTF, Unicorn JS</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>This year InCTF, the first international CTF (organised by <a href="http://bi0s.in/" rel="external nofollow noopener" target="_blank">team bi0s</a>), ended on 17th of December 2017. Congrats to OpenToAll, Dcua and jinmo123 for finishing in the top three positions respectively.</p>
+
+<p>We had around 27 challenges for the CTF from Web, pwn, RE, Mobile, Crypto and Forensics. Since web is my area, I had designed a challenge, <code class="language-plaintext highlighter-rouge">Secure Auth</code>
+which was not just based on Web, but also on RE. The challenge was designed in such a way that to get the flag, you will have to bypass the authentication which is in JS.</p>
+
+<p>About the challenge, you have a welcome screen where in it is written <code class="language-plaintext highlighter-rouge">Site under maintenance</code>.</p>
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/welcome_screen1.png" alt="">
+</figure>
+<p>Going through the source code and cookies doesn’t reveal anything. Since there are several tools available to see the directories available, one such tool being the <a href="https://github.com/gokulkrishna01/Webexploiter" rel="external nofollow noopener" target="_blank"> Web exploiter</a> reveals that there is <code class="language-plaintext highlighter-rouge">robots.txt</code> and upon going through that, we can see a few folders.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User-agent: *
+Disallow: /cgi-bin
+Disallow: /zxcv
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">/zxcv</code> takes us to a login page and upon going through a source code, we can see 2 JS being called, <code class="language-plaintext highlighter-rouge">unicorn.js</code> and <code class="language-plaintext highlighter-rouge">script.js</code>.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/ctfwriteup/login_screen1.png" alt="">
+</figure>
+
+<p><code class="language-plaintext highlighter-rouge">script.js</code> reveals the following code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var _0x9c2f=['PROT_ALL','location','href','indexOf','/../','.html','Wrong\x20credentials,\x20sorry','#c_submit','click','preventDefault','#cuser','val','slice','split','reverse','map','charCodeAt','toString','join','#cpass','reg_write_i32','X86_REG_EAX','X86_REG_ECX','X86_REG_EDX','mem_map','emu_start','length','reg_read_i32','ARCH_X86','MODE_32','X86_REG_ESI','X86_REG_EBX','X86_REG_EBP'];(function(a,c){var b=function(b){while(--b){a['push'](a['shift']());}};b(++c);}(_0x9c2f,0x193));var _0xf9c2=function(a,c){a=a-0x0;var b=_0x9c2f[a];return b;};$(_0xf9c2('0x0'))[_0xf9c2('0x1')](function(r){r[_0xf9c2('0x2')]();var h=$(_0xf9c2('0x3'))[_0xf9c2('0x4')]();var n=h[_0xf9c2('0x5')](0x0,0x4);n=n[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()['join']('');n='0x'+n['split']('')[_0xf9c2('0x8')](_0x29995c=&gt;_0x29995c[_0xf9c2('0x9')](0x0)[_0xf9c2('0xa')](0x10))[_0xf9c2('0xb')]('');var m=h[_0xf9c2('0x5')](0x4,0x8);m=m[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()[_0xf9c2('0xb')]('');m='0x'+m[_0xf9c2('0x6')]('')[_0xf9c2('0x8')](_0x1c7b1c=&gt;_0x1c7b1c['charCodeAt'](0x0)[_0xf9c2('0xa')](0x10))[_0xf9c2('0xb')]('');var f=h[_0xf9c2('0x5')](0x8,0xc);f=f[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()[_0xf9c2('0xb')]('');f='0x'+f[_0xf9c2('0x6')]('')[_0xf9c2('0x8')](_0x41acdb=&gt;_0x41acdb[_0xf9c2('0x9')](0x0)['toString'](0x10))[_0xf9c2('0xb')]('');var j=h[_0xf9c2('0x5')](0xc,0x10);j=j[_0xf9c2('0x6')]('')['reverse']()[_0xf9c2('0xb')]('');j='0x'+j[_0xf9c2('0x6')]('')[_0xf9c2('0x8')](_0x4186f9=&gt;_0x4186f9[_0xf9c2('0x9')](0x0)[_0xf9c2('0xa')](0x10))[_0xf9c2('0xb')]('');var g=h[_0xf9c2('0x5')](0x10,0x13);g=g[_0xf9c2('0x6')]('')['reverse']()[_0xf9c2('0xb')]('');g='0x'+g['split']('')[_0xf9c2('0x8')](_0x515f47=&gt;_0x515f47[_0xf9c2('0x9')](0x0)['toString'](0x10))[_0xf9c2('0xb')]('');var c=$(_0xf9c2('0xc'))[_0xf9c2('0x4')]();var o=c[_0xf9c2('0x5')](0x0,0x4);o=o['split']('')[_0xf9c2('0x7')]()['join']('');o='0x'+o[_0xf9c2('0x6')]('')['map'](_0x12efcf=&gt;_0x12efcf['charCodeAt'](0x0)[_0xf9c2('0xa')](0x10))[_0xf9c2('0xb')]('');var i=c['slice'](0x4,0x8);i=i['split']('')[_0xf9c2('0x7')]()[_0xf9c2('0xb')]('');i='0x'+i['split']('')[_0xf9c2('0x8')](_0x3b0ae1=&gt;_0x3b0ae1[_0xf9c2('0x9')](0x0)['toString'](0x10))[_0xf9c2('0xb')]('');var e=c[_0xf9c2('0x5')](0x8,0xc);e=e[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()['join']('');e='0x'+e['split']('')[_0xf9c2('0x8')](_0x40d2e3=&gt;_0x40d2e3['charCodeAt'](0x0)['toString'](0x10))[_0xf9c2('0xb')]('');var k=c[_0xf9c2('0x5')](0xc,0x10);k=k[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()['join']('');k='0x'+k[_0xf9c2('0x6')]('')[_0xf9c2('0x8')](_0x71ef00=&gt;_0x71ef00[_0xf9c2('0x9')](0x0)[_0xf9c2('0xa')](0x10))[_0xf9c2('0xb')]('');var l=c[_0xf9c2('0x5')](0x10,0x13);l=l[_0xf9c2('0x6')]('')[_0xf9c2('0x7')]()[_0xf9c2('0xb')]('');l='0x'+l[_0xf9c2('0x6')]('')[_0xf9c2('0x8')](_0x335224=&gt;_0x335224[_0xf9c2('0x9')](0x0)[_0xf9c2('0xa')](0x10))['join']('');var a=new uc['Unicorn'](uc['ARCH_X86'],uc['MODE_32']);var b=0x8048000;var d=[0xbf,0x69,0x61,0x6d,0x74,0x39,0xf8,0x75,0x2b,0xbf,0x68,0x65,0x61,0x64,0x39,0xfb,0x75,0x22,0xbf,0x6d,0x69,0x6e,0x69,0x39,0xf9,0x75,0x19,0xbf,0x73,0x74,0x72,0x61,0x39,0xfa,0x75,0x10,0xbf,0x74,0x6f,0x72,0x0,0x39,0xfe,0x75,0x7,0xb8,0x1,0x0,0x0,0x0,0xeb,0x5,0xb8,0x0,0x0,0x0,0x0];a[_0xf9c2('0xd')](uc[_0xf9c2('0xe')],n);a[_0xf9c2('0xd')](uc['X86_REG_EBX'],m);a[_0xf9c2('0xd')](uc[_0xf9c2('0xf')],f);a[_0xf9c2('0xd')](uc[_0xf9c2('0x10')],j);a[_0xf9c2('0xd')](uc['X86_REG_ESI'],g);a[_0xf9c2('0x11')](b,0x1000,uc['PROT_ALL']);a['mem_write'](b,d);a[_0xf9c2('0x12')](b,b+d[_0xf9c2('0x13')]);var p=a[_0xf9c2('0x14')](uc[_0xf9c2('0xe')]);if(p){var a=new uc['Unicorn'](uc[_0xf9c2('0x15')],uc[_0xf9c2('0x16')]);var b=0x8048000;var d=[0x81,0xc6,0x69,0x61,0x6d,0x74,0x81,0xc6,0x7,0x6,0x5,0x4,0x81,0xfe,0xd3,0xd6,0xe0,0xdf,0x75,0x55,0x40,0x81,0xc3,0x68,0x65,0x61,0x64,0x81,0xc3,0x3,0x2,0x1,0x0,0x81,0xfb,0xdd,0xdb,0xdc,0x98,0x75,0x40,0x40,0x81,0xc1,0x6d,0x69,0x6e,0x69,0x81,0xc1,0xf,0xe,0xd,0xc,0x81,0xf9,0xf0,0xdf,0xe0,0xe5,0x75,0x2b,0x40,0x81,0xc2,0x73,0x74,0x72,0x61,0x81,0xc2,0xb,0xa,0x9,0x8,0x81,0xfa,0xdf,0xf1,0x9f,0xe0,0x75,0x16,0x40,0x81,0xc5,0x74,0x6f,0x72,0x0,0x81,0xc5,0x17,0x16,0x15,0x0,0x81,0xfd,0xbb,0xf7,0xcb,0x0,0x75,0x1,0x40];a[_0xf9c2('0xd')](uc[_0xf9c2('0x17')],o);a[_0xf9c2('0xd')](uc[_0xf9c2('0x18')],i);a[_0xf9c2('0xd')](uc[_0xf9c2('0xf')],e);a[_0xf9c2('0xd')](uc[_0xf9c2('0x10')],k);a[_0xf9c2('0xd')](uc[_0xf9c2('0x19')],l);a[_0xf9c2('0x11')](b,0x1000,uc[_0xf9c2('0x1a')]);a['mem_write'](b,d);a[_0xf9c2('0x12')](b,b+d[_0xf9c2('0x13')]);var q=a[_0xf9c2('0x14')](uc['X86_REG_EAX']);if(q==0x5){if(document[_0xf9c2('0x1b')][_0xf9c2('0x1c')][_0xf9c2('0x1d')]('?p=')==-0x1){document['location']=document[_0xf9c2('0x1b')]+_0xf9c2('0x1e')+c+_0xf9c2('0x1f');}}else{alert(_0xf9c2('0x20'));}}else{alert(_0xf9c2('0x20'));}});
+</code></pre></div></div>
+
+<p>We can see that the code is obfuscated and little bit of deobfuscation gives us the following code which is used for the authentication:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$("#c_submit").click(function(event) {
+    event.preventDefault();
+    var u = $("#cuser").val();
+    var u1 = u.slice(0,4);
+    u1 = u1.split("").reverse().join("");
+    u1 = "0x" + u1.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var u2 = u.slice(4, 8);
+    u2 = u2.split("").reverse().join("");
+    u2 = "0x" + u2.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var u3 = u.slice(8, 12);
+    u3 = u3.split("").reverse().join("");
+    u3 = "0x" + u3.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var u4 = u.slice(12, 16);
+    u4 = u4.split("").reverse().join("");
+    u4 = "0x" + u4.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var u5 = u.slice(16, 19);
+    u5 = u5.split("").reverse().join("");
+    u5 = "0x" + u5.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+
+    var p = $("#cpass").val();
+    var p1 = p.slice(0,4);
+    p1 = p1.split("").reverse().join("");
+    p1 = "0x" + p1.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var p2 = p.slice(4, 8);
+    p2 = p2.split("").reverse().join("");
+    p2 = "0x" + p2.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var p3 = p.slice(8, 12);
+    p3 = p3.split("").reverse().join("");
+    p3 = "0x" + p3.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var p4 = p.slice(12, 16);
+    p4 = p4.split("").reverse().join("");
+    p4 = "0x" + p4.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+    var p5 = p.slice(16, 19);
+    p5 = p5.split("").reverse().join("");
+    p5 = "0x" + p5.split("").map((x) =&gt; x.charCodeAt(0).toString(16)).join("")
+
+    var e = new uc.Unicorn(uc.ARCH_X86, uc.MODE_32);
+    var addr = 0x8048000;
+    var code = [0xbf, 0x69, 0x61, 0x6d, 0x74, 0x39, 0xf8, 0x75, 0x2b, 0xbf, 0x68,
+                0x65, 0x61, 0x64, 0x39, 0xfb, 0x75, 0x22, 0xbf, 0x6d, 0x69, 0x6e,
+                0x69, 0x39, 0xf9, 0x75, 0x19, 0xbf, 0x73, 0x74, 0x72, 0x61, 0x39,
+                0xfa, 0x75, 0x10, 0xbf, 0x74, 0x6f, 0x72, 0x00, 0x39, 0xfe, 0x75,
+                0x07, 0xb8, 0x01, 0x00, 0x00, 0x00, 0xeb, 0x05, 0xb8, 0x00, 0x00,
+                0x00, 0x00];
+    e.reg_write_i32(uc.X86_REG_EAX, u1);
+    e.reg_write_i32(uc.X86_REG_EBX, u2);
+    e.reg_write_i32(uc.X86_REG_ECX, u3);
+    e.reg_write_i32(uc.X86_REG_EDX, u4);
+    e.reg_write_i32(uc.X86_REG_ESI, u5);
+    e.mem_map(addr, 4096, uc.PROT_ALL);
+    e.mem_write(addr, code);
+    e.emu_start(addr, addr + code.length);
+    var t = e.reg_read_i32(uc.X86_REG_EAX);
+    if (t) {
+	    var e = new uc.Unicorn(uc.ARCH_X86, uc.MODE_32);
+	    var addr = 0x08048000;
+	    var code = [0x81, 0xc6, 0x69, 0x61, 0x6d, 0x74, 0x81, 0xc6, 0x07, 0x06,
+                    0x05, 0x04, 0x81, 0xfe, 0xd3, 0xd6, 0xe0, 0xdf, 0x75, 0x55,
+                    0x40, 0x81, 0xc3, 0x68, 0x65, 0x61, 0x64, 0x81, 0xc3, 0x03,
+                    0x02, 0x01, 0x00, 0x81, 0xfb, 0xdd, 0xdb, 0xdc, 0x98, 0x75,
+                    0x40, 0x40, 0x81, 0xc1, 0x6d, 0x69, 0x6e, 0x69, 0x81, 0xc1,
+                    0x0f, 0x0e, 0x0d, 0x0c, 0x81, 0xf9, 0xf0, 0xdf, 0xe0, 0xe5,
+                    0x75, 0x2b, 0x40, 0x81, 0xc2, 0x73, 0x74, 0x72, 0x61, 0x81,
+                    0xc2, 0x0b, 0x0a, 0x09, 0x08, 0x81, 0xfa, 0xdf, 0xf1, 0x9f,
+                    0xe0, 0x75, 0x16, 0x40, 0x81, 0xc5, 0x74, 0x6f, 0x72, 0x00,
+                    0x81, 0xc5, 0x17, 0x16, 0x15, 0x00, 0x81, 0xfd, 0xbb, 0xf7,
+                    0xcb, 0x00, 0x75, 0x01, 0x40];
+	    e.reg_write_i32(uc.X86_REG_ESI, p1);
+	    e.reg_write_i32(uc.X86_REG_EBX, p2);
+	    e.reg_write_i32(uc.X86_REG_ECX, p3);
+	    e.reg_write_i32(uc.X86_REG_EDX, p4);
+	    e.reg_write_i32(uc.X86_REG_EBP, p5);
+	    e.mem_map(addr, 4096, uc.PROT_ALL);
+	    e.mem_write(addr, code);
+	    e.emu_start(addr, addr + code.length);
+	    var check = e.reg_read_i32(uc.X86_REG_EAX);
+        if (check == 5) {
+            if (document.location.href.indexOf("?p=") == -1) {
+                document.location = document.location + "/../" + p + ".html";
+            }
+        }
+        else{
+            alert('Wrong credentials, sorry');
+        }
+    }
+    else{
+        alert('Wrong credentials, sorry');
+    }
+});
+</code></pre></div></div>
+<p>Here, we can see that the username and the password are sliced in little endian and then being stored in registers and the input length being <code class="language-plaintext highlighter-rouge">0x13</code>. As the description of the challenge says, the username and password has same length. The authentication uses Unicorn which emulates opcodes in browser. The above code has two checks done of which one is for username and the other being for password.</p>
+
+<p>The assembly instructions for the <code class="language-plaintext highlighter-rouge">username</code> is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      bf 69 61 6d 74          mov    edi,0x746d6169
+      39 f8                   cmp    eax,edi
+      75 2b                   jne    0x34
+      bf 68 65 61 64          mov    edi,0x64616568
+      39 fb                   cmp    ebx,edi
+      75 22                   jne    0x34
+      bf 6d 69 6e 69          mov    edi,0x696e696d
+      39 f9                   cmp    ecx,edi
+      75 19                   jne    0x34
+      bf 73 74 72 61          mov    edi,0x61727473
+      39 fa                   cmp    edx,edi
+      75 10                   jne    0x34
+      bf 74 6f 72 00          mov    edi,0x726f74
+      39 fe                   cmp    esi,edi
+      75 07                   jne    0x34
+      b8 01 00 00 00          mov    eax,0x1
+      eb 05                   jmp    0x39
+      b8 00 00 00 00          mov    eax,0x0
+</code></pre></div></div>
+<p>and for the <code class="language-plaintext highlighter-rouge">password</code> is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      81 c6 69 61 6d 74       add    esi,0x746d6169
+      81 c6 07 06 05 04       add    esi,0x4050607
+      81 fe d3 d6 e0 df       cmp    esi,0xdfe0d6d3
+      75 55                   jne    0x69
+      40                      inc    eax
+      81 c3 68 65 61 64       add    ebx,0x64616568
+      81 c3 03 02 01 00       add    ebx,0x10203
+      81 fb dd db dc 98       cmp    ebx,0x98dcdbdd
+      75 40                   jne    0x69
+      40                      inc    eax
+      81 c1 6d 69 6e 69       add    ecx,0x696e696d
+      81 c1 0f 0e 0d 0c       add    ecx,0xc0d0e0f
+      81 f9 f0 df e0 e5       cmp    ecx,0xe5e0dff0
+      75 2b                   jne    0x69
+      40                      inc    eax
+      81 c2 73 74 72 61       add    edx,0x61727473
+      81 c2 0b 0a 09 08       add    edx,0x8090a0b
+      81 fa df f1 9f e0       cmp    edx,0xe09ff1df
+      75 16                   jne    0x69
+      40                      inc    eax
+      81 c5 74 6f 72 00       add    ebp,0x726f74
+      81 c5 17 16 15 00       add    ebp,0x151617
+      81 fd bb f7 cb 00       cmp    ebp,0xcbf7bb
+      75 01                   jne    0x69
+      40                      inc    eax
+</code></pre></div></div>
+
+<p>We can get the <code class="language-plaintext highlighter-rouge">username</code> as <code class="language-plaintext highlighter-rouge">iamtheadministrator</code> and <code class="language-plaintext highlighter-rouge">password</code> as <code class="language-plaintext highlighter-rouge">congrtz4thepas$w0rD</code> from the above respective codes through which we can get past the login page. Upon successful authentication, we get redirected to the <code class="language-plaintext highlighter-rouge">ChallengeURL/congrtz4thepas$w0rD.html</code>. From the source code, we can get the flag <code class="language-plaintext highlighter-rouge">inctf{l1ck_l1ck_l1ck_my_j5}</code>.</p>
+
+  </article>
+
+
+  
+    
+    <br>
+    <hr>
+    <br>
+    <ul class="list-disc pl-8"></ul>
+
+    <!-- Adds related posts to the end of an article -->
+    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
+    <p class="mb-2">Here are some more articles you might like to read next:</p>
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/CONFidence-CTF-admin-panel/">CONFidence CTF 2019 'The Admin Panel' Writeup</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/iCTF-2019-Echodoor/">iCTF 2019 Echodoor</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/SECT-2018-EzDOS/">SECT 2018 EzDOS Reversing Challenge</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/">ASIS Quals 2018 Good WAF</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/MacOS-Malware/">Search Page Injection Malware on MacOS </a>
+  </li>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Gokulkrishna P. Menon. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>

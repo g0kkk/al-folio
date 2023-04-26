@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ASIS Quals 2018 Good WAF | Gokul Krishna</title>
+    <meta name="author" content="Gokulkrishna P. Menon">
+    <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://g0kkk.github.io/blog/2018/ASIS-CTF-Quals-2018-Good-WAF/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/">Gokul Krishna</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/projects/">projects</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/teaching/">teaching</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/publications/">publications</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/projects/">projects</a>
+                </div>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">ASIS Quals 2018 Good WAF</h1>
+    <p class="post-meta">May 1, 2018</p>
+    <p class="post-tags">
+      <a href="/blog/2018"> <i class="fas fa-calendar fa-sm"></i> 2018 </a>
+        ·  
+        <a href="/blog/tag/asis-quals-sqli-web-application-firewall">
+          <i class="fas fa-hashtag fa-sm"></i> ASIS Quals, SQLi, Web Application Firewall</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>Challenge name: <code class="language-plaintext highlighter-rouge">Good WAF</code>
+Description: <code class="language-plaintext highlighter-rouge">WAFs cannot detect parameters filled with opaque data such as base64. Consequently, We've tuned our WAF to be more strong checking these inputs.</code>
+Link: http://167.99.12.110/</p>
+
+<p>We were greeted with the following page</p>
+<figure class="foto-legenda">
+	<img src="../assets/asisquals/GreetPage.png" alt="">
+</figure>
+
+<p>written <code class="language-plaintext highlighter-rouge">GET news by object (base64(json_object)) parameter</code>.</p>
+
+<p>That was basically the first step for the challenge which was nothing else but a <code class="language-plaintext highlighter-rouge">GET</code> parameter <code class="language-plaintext highlighter-rouge">object</code> which should have a <code class="language-plaintext highlighter-rouge">json_object</code> encoded in <code class="language-plaintext highlighter-rouge">base64</code>. Initially I was trying to find the parameter which was in the application and that was, <code class="language-plaintext highlighter-rouge">data</code>. So passed <code class="language-plaintext highlighter-rouge">base64_encoded({"data":1})</code> and gave us the first data associated to that. It was a news and basically that showed us it was nothing, but SQLi.</p>
+
+<p>So first attempt was to enumerate and break the query. The <code class="language-plaintext highlighter-rouge">base64_encoded({"data":"1"})</code> and up gave the result of the corresponding number. While I had passed <code class="language-plaintext highlighter-rouge">base64_encoded({"data":"'"})</code>, it showed <code class="language-plaintext highlighter-rouge">blocked by WAF</code>. Well, that was pretty much sure and the easiest bypass was to include a space in between which was nothing but, <code class="language-plaintext highlighter-rouge">base64_encoded({ "data" : "'"})</code>. Bingo, the following page was reflected with that payload</p>
+
+<figure class="foto-legenda">
+	<img src="../assets/asisquals/sql1.png" alt="">
+</figure>
+
+<p>With this, I found the name of the <code class="language-plaintext highlighter-rouge">database()</code> (check below for the payload) which was <code class="language-plaintext highlighter-rouge">waf_portal</code> and also the table name(check below for payload), <code class="language-plaintext highlighter-rouge">access_logscredentialsnews</code> which more of looked like three table names and hence parting them, <code class="language-plaintext highlighter-rouge">access_logs</code>, <code class="language-plaintext highlighter-rouge">credentials</code> and <code class="language-plaintext highlighter-rouge">news</code> (understood this while trying to find the column name :P).</p>
+
+<p>The next step was to find what all are there in the three tables and grab them. Well, poking around for sometime gave me nothing in credentials (basically the flag). I was able to find a user named <code class="language-plaintext highlighter-rouge">valid_user</code> with password as <code class="language-plaintext highlighter-rouge">5f4dcc3b5aa765d61d8327deb882cf99</code> and role was <code class="language-plaintext highlighter-rouge">administrator</code>. Now with this, I had seen a class in the <code class="language-plaintext highlighter-rouge">style.css</code> file which was <code class="language-plaintext highlighter-rouge">.login-form</code> making me think that there should be a login form. The next step was to identify how to get to the login page and accessed the <code class="language-plaintext highlighter-rouge">access_log</code> table to find anything. There were a quite a number of <code class="language-plaintext highlighter-rouge">id</code>’s and iterating through each, in the <code class="language-plaintext highlighter-rouge">13</code>th one, I was able to find <code class="language-plaintext highlighter-rouge">?action=log-in</code>.</p>
+
+<p>The next step was to login with the username and password that we had got. The password looked more of like an <code class="language-plaintext highlighter-rouge">md5</code> and googling it cracked it which was <code class="language-plaintext highlighter-rouge">password</code>. So now we have the username:<code class="language-plaintext highlighter-rouge">valid_user</code> and password:<code class="language-plaintext highlighter-rouge">password</code>.</p>
+
+<p>The first way was trying to reach the <code class="language-plaintext highlighter-rouge">log-in</code> page. Accessing <code class="language-plaintext highlighter-rouge">http://167.99.12.110/?action=log-in</code> resulted in an error which was</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notice: Undefined index: credentials in /var/www/html/index.php on line 21
+
+Notice: Undefined index: credentials in /var/www/html/index.php on line 22
+Invalid Credentials.
+</code></pre></div></div>
+
+<p>Very well, that error confirmed that we had to pass <code class="language-plaintext highlighter-rouge">username</code> and the <code class="language-plaintext highlighter-rouge">password</code> as <code class="language-plaintext highlighter-rouge">credentials</code> through a <code class="language-plaintext highlighter-rouge">GET</code> request. Going ahead, <code class="language-plaintext highlighter-rouge">http://167.99.12.110/?credentials=&amp;action=log-in</code> threw another interesting error,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Notice: Uninitialized string offset: 0 in /var/www/html/index.php on line 21
+
+Notice: Uninitialized string offset: 1 in /var/www/html/index.php on line 22
+Invalid Credentials
+</code></pre></div></div>
+
+<p>which was nothing but passing it as an array.</p>
+
+<p>The final payload was:
+<code class="language-plaintext highlighter-rouge">http://167.99.12.110/?credentials[]=valid_user&amp;credentials[]=password&amp;action=log-in</code></p>
+
+<p>and Bingo, <code class="language-plaintext highlighter-rouge">ASIS{e279aaf1780c798e55477a7afc7b2b18}</code>.</p>
+
+<p>Payload for database:   <code class="language-plaintext highlighter-rouge">base64_encoded({  "data"  :  " ' UNION SELECT 1,database() -- "  })</code></p>
+
+<p>Payload for table name: <code class="language-plaintext highlighter-rouge">base64_encoded({ "data"  :  "' UNION select 1,table_name from information_schema.tables where table_schema=database() -- " })</code></p>
+
+<p>Reach me out on <a href="https://twitter.com/gkgkrishna33/status/991191742257946624" rel="external nofollow noopener" target="_blank">Twitter</a> for more queries.</p>
+
+  </article>
+
+
+  
+    
+    <br>
+    <hr>
+    <br>
+    <ul class="list-disc pl-8"></ul>
+
+    <!-- Adds related posts to the end of an article -->
+    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
+    <p class="mb-2">Here are some more articles you might like to read next:</p>
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/CONFidence-CTF-admin-panel/">CONFidence CTF 2019 'The Admin Panel' Writeup</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2019/iCTF-2019-Echodoor/">iCTF 2019 Echodoor</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/SECT-2018-EzDOS/">SECT 2018 EzDOS Reversing Challenge</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/MacOS-Malware/">Search Page Injection Malware on MacOS </a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2018/0CTF-Quals-2018-EZDoor/">0CTF 2018 EZdoor Web Challenge</a>
+  </li>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Gokulkrishna P. Menon. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>
