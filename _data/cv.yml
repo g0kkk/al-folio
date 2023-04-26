@@ -2,96 +2,81 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Gokulkrishna Praveen Menon
     - name: Date of Birth
-      value: 14th March 1879
+      value: 1st August 1996
     - name: Languages
-      value: English, German
+      value: English, Malayalam
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+    - title: Masters in Computer Science
+      institution: Arizona State University, Tempe, USA
+      year: 2019 - Present
+    - title: Bachelor of Technology in Computer Science and Engineering
+      institution: Amrita University, Kerala, India
+      year: 2014-2018
 
-- title: Experience
+- title: Work Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Security Researcher at SEFCOM
+      institution: Arizona State University, Tempe, USA
+      year: 2018 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Developed a new fuzzing technique involving dynamic patching that resulted in a significant increase in bug discovery on Linux Binaries.
+    - title: International Capture The Flag(CTF) player with Shellphish
+      institution: Arizona State University
+      year: 2018 - Present
       description:
-        - Description 1.
-        - Description 2.
+        - Actively participates in Capture the Flag hacking contest with focus on security challenges in the area of Reverse Engineering and Web Security.
+    - title: International Capture The Flag(CTF) player with Team Bi0s
+      institution: Amrita University, Kerala, India
+      year: 2015 - Present
+      description: 
+        - Actively participated in Capture the Flag hacking contest with focus on security challenges in the area of Reverse Engineering and Web Security.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+- title: Teaching Experience
+  type: time_table
+  contents:
+    - title: Teaching Assistant for CSE 365
+      institution: Arizona State University, Tempe, USA
+      year: 2023 - Present
       description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+        - Introduction to Information Assurance course, assisting Dr. Fish Wang in lectures, grading, and mentoring over 100 students, while improving course content with fellow TAs.
+    - title: Teaching Assistant for CSE 365
+      institution: Arizona State University, Tempe, USA
+      year: 2019
+      description:
+        - Conducted sessions, graded assignments, and provided mentoring and support to students for Introduction to Information Assurance course.
+    - title: Teaching Assistant for CSE 598
+      institution: Arizona State University, Tempe, USA
+      year: 2019
+      description:
+        - Took sessions and graded assignments as a teaching assistant for Dr. Tiffany Bao in CSE 598 - Computer Security: Techniques and Tactics course.
 
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: <a href="https://github.com/angr/patcherex">Patcherex</a>
+      year: 2019-now
+      description: Shellphish's automated patching engine, originally created for the Cyber Grand Challenge.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
+    - year: 2019
       items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
+        - Multiple CVE's in Backdrop CMS.
+        - CVE 2019-14769, 2019-14770, 2019-14771
+    - year: 2019
       items: 
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+        - As part of Shellphish, secured first position.
+    - year: 2018
       items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+        - Awarded scholarship to attend BlackHat Asia 2018.
+    - year: 2016
+      items:
+        - CSAW Capture The Flag Finals, India
+        - As part of team bi0s, secured first runners up position.
