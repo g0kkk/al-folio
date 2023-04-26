@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Contact via <a href='mailto:gpraveen@asu.edu'>Email</a>.
 
 profile:
   align: right
@@ -13,7 +13,7 @@ profile:
     <p>699, S. Mill Avenue</p>
     <p>Tempe, Arizona, 85281</p>
 
-news: true  # includes a list of news items
+news: false  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
