@@ -75,13 +75,13 @@ github_username: g0kkk # your GitHub user name
 gitlab_username: # your GitLab user name
 twitter_username: gkgkrishna33 # your Twitter handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
-linkedin_username: # your LinkedIn user name
+linkedin_username: gokulkrishna-p-menon-53369bb9 # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: # your ORCID ID
-medium_username: # your Medium username
+medium_username: GokulKrishna01 # your Medium username
 quora_username: # your Quora username
 publons_id: # your ID on Publons
 osf_id: # your OSF ID
@@ -101,7 +101,7 @@ unsplash_id: # your unsplash id
 instagram_id: # your instagram id
 facebook_id: # your facebook id
 youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
-discord_id: # your discord id (18-digit unique numerical identifier)
+discord_id: ray9987 # your discord id (18-digit unique numerical identifier)
 
 contact_note: >
   Best way to reach out to me is via Email - gpraveen@asu.edu
@@ -110,7 +110,7 @@ contact_note: >
 # Analytics and search engine verification
 # -----------------------------------------------------------------------------
 
-google_analytics:  # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
+google_analytics:  G-EFX1HFGNX5 # your Google Analytics measurement ID (format: G-XXXXXXXXXX)
 panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 
 google_site_verification:  # your google-site-verification ID (Google Search Console)
@@ -158,7 +158,7 @@ disqus_shortname: al-folio # put your disqus shortname
 # you can display them in your blog by adding a link to the RSS feed.
 #External_sources:
 #  - name: medium.com
-#    rss_url: https://medium.com/@GokulKrishna01/green-chilly-chicken-fry-f9ba6d67740
+#    rss_url: https://medium.com/@GokulKrishna01/
 
 # -----------------------------------------------------------------------------
 # Collections
