@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFrame Form</title>
+</head>
+<body>
+    <iframe srcdoc='
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>IFrame Form</title>
+        </head>
+        <body>
+            <input type="text" id="userInput" placeholder="Enter data">
+            <button onclick="sendData()">Send GET Request</button>
+            <script>
+                function sendData() {
+                    var input = document.getElementById("userInput").value;
+                    var url = "https://2a54-12-87-110-98.ngrok-free.app";
+                    var params = "data=" + encodeURIComponent(input);
+                    var fullUrl = url + "?" + params;
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", fullUrl, true);
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == XMLHttpRequest.DONE) {
+                            if (xhr.status == 200) {
+                                console.log("Request successful");
+                            } else {
+                                console.error("Request failed");
+                            }
+                        }
+                    };
+                }
+            </script>
+        </body>
+        </html>
+    ' width="100%" height="200"></iframe>
+</body>
+</html>
+
