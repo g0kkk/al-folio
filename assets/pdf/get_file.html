@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read File on Button Click</title>
+</head>
+<body>
+<button onclick="readFile()">Read index.html</button>
+ 
+<div id="fileContents"></div>
+ 
+<script>
+    function readFile() {
+        var filePath = "/data/LucidUserManual/Lucid_Air_OM_en-US/index.html";
+        fetch(filePath)
+            .then(response => response.text())
+            .then(contents => {
+                document.getElementById('fileContents').innerText = contents;
+            })
+            .catch(error => {
+                console.error('Error reading file:', error);
+                document.getElementById('fileContents').innerText = 'Error reading file: ' + error.message;
+            });
+    }
+</script>
+</body>
+</html>
+
