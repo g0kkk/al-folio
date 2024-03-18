@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecting...</title>
-<script>
-    var redirectUrl = "https://rivian.com/";
-
-    function redirect() {
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        } else {
-            console.error("Redirect URL is not provided.");
-        }
-    }
-
-    setTimeout(redirect, 3000);
-</script>
+<title>Proxy Page</title>
 </head>
 <body>
-<p>Redirecting to another page...</p>
+<iframe id="myFrame" src="" width="100%" height="600"></iframe>
+
+<script>
+  function setNgrokHeader() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://e4c5-12-87-110-98.ngrok-free.app/proxy");
+    xhr.setRequestHeader("ngrok-skip-browser-warning", "true");
+    xhr.send();
+  }
+
+  document.getElementById('myFrame').onload = function() {
+    setNgrokHeader();
+  };
+</script>
 </body>
 </html>
 
