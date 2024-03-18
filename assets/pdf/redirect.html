@@ -3,23 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proxy Page</title>
+<title>XHR Example with Ngrok Header within Iframe</title>
 </head>
 <body>
-<iframe id="myFrame" src="" width="100%" height="600"></iframe>
-
-<script>
-  function setNgrokHeader() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://e4c5-12-87-110-98.ngrok-free.app/proxy");
-    xhr.setRequestHeader("ngrok-skip-browser-warning", "true");
-    xhr.send();
-  }
-
-  document.getElementById('myFrame').onload = function() {
-    setNgrokHeader();
-  };
-</script>
+  <iframe srcdoc='
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR Example with Ngrok Header within Iframe</title>
+    </head>
+    <body>
+      <button onclick="sendRequest()">Send Request</button>
+      <div id="response"></div>
+      
+      <script>
+        function sendRequest() {
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", "https://e4c5-12-87-110-98.ngrok-free.app/proxy", true); // Replace with your API endpoint
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.setRequestHeader("ngrok-skip-browser-warning", "true"); // Set ngrok header
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                var response = xhr.responseText;
+                document.getElementById("response").innerText = response;
+              } else {
+                console.error("Request failed with status:", xhr.status);
+              }
+            }
+          };
+          xhr.send();
+        }
+      </script>
+    </body>
+    </html>' width="100%" height="300px"></iframe>
 </body>
 </html>
 
