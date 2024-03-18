@@ -3,38 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XHR Example with Ngrok Header within Iframe</title>
+<title>Random stuff</title>
 </head>
 <body>
-  <iframe srcdoc='
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XHR Example with Ngrok Header within Iframe</title>
-    </head>
-    <body>
-      <div id="response"></div>
-      
-      <script>
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://e4c5-12-87-110-98.ngrok-free.app/proxy", true); // Replace with your proxy URL
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.setRequestHeader("ngrok-skip-browser-warning", "true"); // Set ngrok header
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              var response = xhr.responseText;
-              document.getElementById("response").innerText = response;
-            } else {
-              console.error("Request failed with status:", xhr.status);
-            }
-          }
-        };
-        xhr.send();
-      </script>
-    </body>
-    </html>' width="100%" height="300px"></iframe>
+  <iframe id="responseFrame" width="100%" height="300px"></iframe>
+
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://e4c5-12-87-110-98.ngrok-free.app/proxy", true); 
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("ngrok-skip-browser-warning", "true"); 
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var response = xhr.responseText;
+          var iframe = document.getElementById("responseFrame");
+          iframe.srcdoc = response;
+        } else {
+          console.error("Request failed with status:", xhr.status);
+        }
+      }
+    };
+    xhr.send();
+  </script>
 </body>
 </html>
+
