@@ -21,9 +21,14 @@
 - title: Work Experience
   type: time_table
   contents:
+    - title: Product Security Engineer
+      institution: Lucid Motors
+      year: 2023 to Present
+      description:
+        - Vulnerability Researcher at Lucid Motors
     - title: Security Researcher at SEFCOM
       institution: Arizona State University, Tempe, USA
-      year: 2018 - Present
+      year: 2018 - 2023
       description:
         - Developed a new fuzzing technique involving dynamic patching that resulted in a significant increase in bug discovery on Linux Binaries.
     - title: International Capture The Flag(CTF) player with Shellphish
